@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "restaurant_tables")
-public class RestaurantTable {
+@Table(name = "desks")
+public class Desk {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,11 +26,11 @@ public class RestaurantTable {
     @Column(name = "is_accessible")
     private Boolean isAccessible;
 
-    @JsonIgnoreProperties("restaurant_table")
-    @OneToMany(mappedBy = "restaurant_table", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("desk")
+    @OneToMany(mappedBy = "desk", fetch = FetchType.LAZY)
     private List<Booking> bookings;
 
-    public RestaurantTable(int pax, int priority, Boolean isAccessible) {
+    public Desk(int pax, int priority, Boolean isAccessible) {
         this.pax = pax;
         this.priority = priority;
         this.duration = 2;
@@ -38,7 +38,7 @@ public class RestaurantTable {
         this.bookings = new ArrayList<>();
     }
 
-    public RestaurantTable(){}
+    public Desk(){}
 
     public Long getId() {
         return id;

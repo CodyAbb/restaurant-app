@@ -1,7 +1,7 @@
 package com.codeclan.example.RestaurantBooker.repositories.restaurantTableRepository;
 
-import com.codeclan.example.RestaurantBooker.Models.RestaurantTable;
+import com.codeclan.example.RestaurantBooker.Models.Desk;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RestaurantTableRepository extends JpaRepository<RestaurantTable, Long> {
+public interface DeskRepository extends JpaRepository<Desk, Long> {
 }
