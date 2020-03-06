@@ -5,7 +5,7 @@ import com.codeclan.example.RestaurantBooker.Models.Customer;
 import com.codeclan.example.RestaurantBooker.Models.Desk;
 import com.codeclan.example.RestaurantBooker.repositories.bookingRepository.BookingRepository;
 import com.codeclan.example.RestaurantBooker.repositories.customerRepository.CustomerRepository;
-import com.codeclan.example.RestaurantBooker.repositories.restaurantTableRepository.DeskRepository;
+import com.codeclan.example.RestaurantBooker.repositories.restaurantDeskRepository.DeskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
