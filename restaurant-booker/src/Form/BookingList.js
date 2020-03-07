@@ -6,16 +6,17 @@ function BookingList ({bookings}){
     const bookingItem = bookings.map(booking => {
         return (
           <Booking 
-          name={booking.name} 
-          email={booking.email}
-          phoneNum={booking.phoneNum}
-          key={booking.id}>
-            {booking.name}
+            name={booking.name} 
+            // email={booking.email}
+            // phoneNum={booking.phoneNum}
+            key={booking.id}>
+              {booking.name}
           </Booking> )
         
     })
     return (
         <ul>
+           Current Reservations: 
             {bookingItem}
         </ul>
     )
