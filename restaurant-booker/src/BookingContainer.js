@@ -1,27 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FormBox from './Form/FormBox.js'
 
-class BookingContainer extends Component() {
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            bookings: [
-
-            ]
-        }
-    }
 
 
-render() {
+function BookingContainer(){
+
     return (
         <>
         <p>Hello I am the booking container</p>
-        <FormBox />
+          <FormBox />
         </>
     )
   }
-}
+
   export default BookingContainer;
   
 
