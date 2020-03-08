@@ -43,7 +43,16 @@ public class DataLoader implements ApplicationRunner {
         Desk desk2 = new Desk(4, 1, true);
         deskRepository.save(desk2);
 
+        Desk desk3 = new Desk(2, 1, true);
+        deskRepository.save(desk3);
+
         Booking booking2 = new Booking("12:30", "07/03/20", 4, customer1, desk1);
         bookingRepository.save(booking2);
+
+        Booking booking3 = new Booking("15:30", "07/03/20", 4, customer1, desk1);
+        bookingRepository.save(booking3);
+
+        Booking booking4 = new Booking("18:30", "07/03/20", 4, customer1, desk1);
+        bookingRepository.save(booking4);
     }
 }

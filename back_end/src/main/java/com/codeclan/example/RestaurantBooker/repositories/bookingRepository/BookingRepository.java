@@ -7,7 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource(excerptProjection = EmbedDesk.class)
+
 public interface BookingRepository extends JpaRepository<Booking, Long> {
     List<Booking> findByDate(String date);
 }
