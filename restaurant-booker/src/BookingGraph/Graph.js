@@ -7,8 +7,13 @@ function Graph ({bookings, bookingSlots}) {
             [{id:1, time: "19:00", date: "01/01/2020", numberOfPeople: 2}]
         },
         {id: 2, name: "table2", pax: 4, priority: 1, duration: 1, accessibility: false, bookings: 
-        [{id:3, time: "19:00", date: "06/01/2020", numberOfPeople: 3}]
-    }
+        [{id:3, time: "19:00", date: "06/01/2020", numberOfPeople: 3}, 
+        {id:15, time: "21:00", date: "06/01/2020", numberOfPeople: 3}
+        ]
+        },
+        {id: 3, name: "table3", pax: 6, priority: 1, duration: 1, accessibility: false, bookings: 
+        [{}]
+        }
     ]);
 
     const createTD = tables.map(table => 
@@ -19,7 +24,7 @@ return <tr>
             if(table.bookings.find(({time}) => time === bookingSlot)) {
                 console.log(table.bookings.find(({time}) => time === bookingSlot))
                 
-            return <td> There's a booking for this time</td>
+            return <td className="entry"> There's a booking for this time</td>
             }
             else {
                return <td>No Bookings for this time</td>
