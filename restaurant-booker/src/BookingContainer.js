@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import FormBox from "./Form/FormBox.js";
+import BookingList from './Form/BookingList.js';
 
 function BookingContainer() {
   const [bookings, setBookings] = useState([]);
@@ -15,7 +16,8 @@ function BookingContainer() {
   return (
     <>
       <p>Hello I am the booking container</p>
-      <FormBox />
+      <FormBox bookings={bookings}/>
+      <BookingList bookings={bookings}/>
       <p>{}</p>
     </>
   );
