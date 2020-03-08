@@ -45,13 +45,15 @@ class FormBox extends Component {
             <>
                 <p>Hello I am the FormBox</p>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="number" 
-                    placeholder="Add number of customers" 
-                    value={this.state.pax} 
-                    onChange={this.handlePax}/>
-                    <input type="date" 
-                    value={this.state.date} 
-                    onChange={this.handleDate}/>
+                    <input 
+                        type="number" 
+                        placeholder="Add number of customers" 
+                        value={this.state.pax} 
+                        onChange={this.handlePax}/>
+                    <input 
+                        type="date" 
+                        value={this.state.date} 
+                        onChange={this.handleDate}/>
                     <select onChange={this.handleTime}>
                         {populateTimeOption}
                     </select>
