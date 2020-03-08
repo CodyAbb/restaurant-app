@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BookingList from './BookingList'
 
 class FormBox extends Component {
     constructor(props){
