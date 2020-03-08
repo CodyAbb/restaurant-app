@@ -11,6 +11,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.awt.print.Book;
+
 
 @Component
 public class DataLoader implements ApplicationRunner {
@@ -37,5 +39,11 @@ public class DataLoader implements ApplicationRunner {
 
         Booking booking1 = new Booking("19:00", "06/03/20", 1, customer1, desk1);
         bookingRepository.save(booking1);
+
+        Desk desk2 = new Desk(4, 1, true);
+        deskRepository.save(desk2);
+
+        Booking booking2 = new Booking("12:30", "07/03/20", 4, customer1, desk1);
+        bookingRepository.save(booking2);
     }
 }
