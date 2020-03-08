@@ -10,16 +10,17 @@ function BookingList ({bookings}){
             // email={booking.email}
             // phoneNum={booking.phoneNum}
             key={booking.id}>
-              {booking.id}
           </Booking> 
         )
         
     })
     return (
+      <>
+      <p>Current Reservations: </p>
         <ul>
-           Current Reservations: 
             {bookingItem}
         </ul>
+      </>
     )
 }
 

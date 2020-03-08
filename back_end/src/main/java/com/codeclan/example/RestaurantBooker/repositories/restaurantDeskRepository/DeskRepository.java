@@ -8,5 +8,5 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 public interface DeskRepository extends JpaRepository<Desk, Long> {
-    List<Desk> findByBookingsDate(String date);
+//    List<Desk> findByBookingsDate(String date);
 }

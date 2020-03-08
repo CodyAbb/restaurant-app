@@ -43,7 +43,7 @@ public class DataLoader implements ApplicationRunner {
         Desk desk2 = new Desk(4, 1, true);
         deskRepository.save(desk2);
 
-        Booking booking2 = new Booking("12:30", "07/03/20", 4, customer1, desk1);
+        Booking booking2 = new Booking("12:30", "07/03/20", 4, customer1, desk2);
         bookingRepository.save(booking2);
     }
 }
