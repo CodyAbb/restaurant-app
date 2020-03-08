@@ -12,40 +12,49 @@ function Graph ({bookings, bookingSlots}) {
         ]
         },
         {id: 3, name: "table3", pax: 6, priority: 1, duration: 1, accessibility: false, bookings: 
-        [{}]
+        []
+        },
+        {id: 4, name: "table4", pax: 6, priority: 1, duration: 1, accessibility: false, bookings: 
+        [{id:16, time: "20:00", date: "06/01/2020", numberOfPeople: 3}]
         }
     ]);
 
     const createTD = tables.map(table => 
         {
-return <tr>
+        return <tr>
         <td>{table.name}</td>
         {bookingSlots.map(bookingSlot => {
-            if(table.bookings.find(({time}) => time === bookingSlot)) {
-                console.log(table.bookings.find(({time}) => time === bookingSlot))
-                
-            return <td className="entry"> There's a booking for this time</td>
+            if(table.bookings.length === 0) {
+                return <td>No Bookings for this time</td>
             }
             else {
-               return <td>No Bookings for this time</td>
+                if(table.bookings.find(({time}) => {
+                    return  bookingSlot >= time && bookingSlot <= getEndTime(time) 
+                })) {                    
+                return <td className="entry"> There's a booking for this time </td>
+                }
+                else {
+                return <td>No Bookings for this time</td>
+                }
             }
-         } )}
+         } 
+         )}
 
          </tr>
         }
-        )
+    )
         
+    function getEndTime(timeString, duration = 1){
+        console.log(`this is inside getEndTime ${timeString}`);
+        
+        let timeIncreasedInt = parseInt(timeString.split(":")[0])+ duration 
+        let timeIncreasedInString = `${timeIncreasedInt}:00`
+        return timeIncreasedInString
+    }
 
-        // const createRows = tables.map(table => 
-        //     {return  <tr> 
-        //         {createTD}
-        //           {/* <td>Data1{table.name}</td> */}
-        //            </tr>
-        //     })
-
-        const mapBooking = tables.map(item => {
-            return <p>{item.name} || first booking: {item.bookings[0].time}</p>
-        })
+        // const mapBooking = tables.map(item => {
+        //     return <p>{item.name} || first booking: {item.bookings[0].time}</p>
+        // })
 
         const createHeader = bookingSlots.map(item => {
         return <th>{item}</th>
@@ -65,7 +74,7 @@ return <tr>
                 </tbody>
             </table>
             <h4> below map Booking</h4>
-            {mapBooking}
+            {/* {mapBooking} */}
             </>
         )
 }

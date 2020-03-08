@@ -5,7 +5,7 @@ import Graph from './BookingGraph/Graph.js'
 
 function BookingContainer() {
   const [bookings, setBookings] = useState([]);
-  const [bookingSlots, setBookingSlots] = useState(["19:00", "20:00", "21:00"]);
+  const [bookingSlots, setBookingSlots] = useState(["19:00", "20:00", "21:00", "22:00"]);
 
   useEffect(() => {
     fetch("http://localhost:8080/bookings")
