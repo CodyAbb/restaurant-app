@@ -1,10 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-function Booking ({bookingValue}){
+
+function Booking ({bookingValue, handleBookingItemClick}){
 
     function handleEditBooking(){
-        console.log(bookingValue.id);
-        
+        handleBookingItemClick(bookingValue.id)
     }
 
     return (
