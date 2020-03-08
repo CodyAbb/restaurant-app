@@ -8,7 +8,7 @@ function BookingContainer() {
     fetch("http://localhost:8080/bookings")
       .then(res => res.json())
       .then(response => response._embedded)
-      .then(result => setBookings(result.bookings))
+      .then(result => setBookings(result.bookings[0]))
       .catch(error => console.log(error));
   }, []);
 
