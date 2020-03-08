@@ -1,5 +1,6 @@
 table {
     border: thin black solid;
+    border-collapse: collapse;
 }
 
 td {
@@ -11,4 +12,5 @@ td {
 
 td.entry {
     background-color: green;
+    border: none;
 }
