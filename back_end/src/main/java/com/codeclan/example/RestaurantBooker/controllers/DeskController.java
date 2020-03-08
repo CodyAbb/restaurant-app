@@ -15,7 +15,7 @@ public class DeskController {
     DeskRepository deskRepository;
 
     @GetMapping(value = "/getAllBookingsForAGivenDesk")
-    public List<Desk> getAllBookingsForAGivenDesk(@RequestParam String date){
-        return deskRepository.getAllBookingsForAGivenDesk(date);
+    public List<Desk> getAllBookingsForAGivenDesk(){
+        return deskRepository.getAllBookingsForAGivenDesk();
     }
 }
