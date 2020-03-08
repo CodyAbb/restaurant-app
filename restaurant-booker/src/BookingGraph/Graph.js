@@ -1,4 +1,5 @@
 import React, { Component, useState } from "react";
+import './Graph.css'
 
 function Graph ({bookings, bookingSlots}) {
     const [tables, setTables] = useState([
@@ -10,15 +11,15 @@ function Graph ({bookings, bookingSlots}) {
     }
     ]);
 
-//  debugger
     const createTD = tables.map(table => 
         {
 return <tr>
+        <td>{table.name}</td>
         {bookingSlots.map(bookingSlot => {
             if(table.bookings.find(({time}) => time === bookingSlot)) {
                 console.log(table.bookings.find(({time}) => time === bookingSlot))
                 
-            return <td>{table.name}</td>
+            return <td> There's a booking for this time</td>
             }
             else {
                return <td>No Bookings for this time</td>
@@ -41,6 +42,10 @@ return <tr>
             return <p>{item.name} || first booking: {item.bookings[0].time}</p>
         })
 
+        const createHeader = bookingSlots.map(item => {
+        return <th>{item}</th>
+        })
+
         return(
             <>
             <h3>This is the Graph section</h3>
@@ -48,8 +53,8 @@ return <tr>
             <table> 
                 <tbody>
                     <tr>
-                        <th>One </th>
-                        <th>Two </th>
+                        <th></th>
+                        {createHeader}
                     </tr>
                     {createTD}
                 </tbody>
