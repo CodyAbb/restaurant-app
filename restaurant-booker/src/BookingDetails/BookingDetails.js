@@ -7,7 +7,18 @@ class BookingDetails extends Component {
 
     render() {
         return (
-            <p>HELLO BOOKING DETAILS</p>
+            <>
+            <h3>Booking Details:</h3>
+                <section>
+                    <header>Selected Booking ID: {this.props.selectedBooking.id}</header>
+                    <main>
+                        <p>Date: {this.props.selectedBooking.date}</p>
+                        <p>Time: {this.props.selectedBooking.time}</p>
+                        <p>Customer: </p>
+                    </main>
+                
+                </section>
+            </>
         )
     }
 
