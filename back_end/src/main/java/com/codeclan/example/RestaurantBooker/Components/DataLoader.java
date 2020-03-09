@@ -37,7 +37,7 @@ public class DataLoader implements ApplicationRunner {
         Desk desk1 = new Desk(2, 1, true);
         deskRepository.save(desk1);
 
-        Booking booking1 = new Booking("19:00", "06/03/20", 1, customer1, desk1);
+        Booking booking1 = new Booking("19:00", "2020-03-06", 1, customer1, desk1);
         bookingRepository.save(booking1);
 
         Desk desk2 = new Desk(4, 1, true);
@@ -46,7 +46,7 @@ public class DataLoader implements ApplicationRunner {
         Desk desk3 = new Desk(2, 1, true);
         deskRepository.save(desk3);
 
-        Booking booking2 = new Booking("12:30", "07/03/20", 4, customer1, desk1);
+        Booking booking2 = new Booking("12:30", "2020-03-07", 4, customer1, desk1);
         bookingRepository.save(booking2);
 
     }

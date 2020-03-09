@@ -4,20 +4,16 @@ import BookingUpdateForm from './BookingUpdateForm.js'
 class BookingDetails extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            pax: "" ,
-            date: "",
-            selectedTime: ""
-        }
     }
 
-    handlePax = (event) => this.setState({pax: event.target.value})
+    // handlePax = (event) => this.setState({pax: event.target.value})
     
-    handleDate = (event) => {
-        this.setState({date: event.target.value})
-    }
+    // handleDate = (event) => {
+    //     this.setState({date: event.target.value})
+    // }
 
-    handleTime = (event) => this.setState({selectedTime: event.target.value})
+    // handleTime = (event) => this.setState({selectedTime: event.target.value})
+
 
 
     render() { 
@@ -31,9 +27,9 @@ class BookingDetails extends Component {
              
             <>
             <h3>Booking Details:</h3>
-            <BookingUpdateForm selectedBooking={this.props.selectedBooking}/>
+            <BookingUpdateForm selectedBooking={this.props.selectedBooking} bookingSlots={this.props.bookingSlots}/>
             
-            <h4> below just fixed data. So we know what's inside</h4>
+            {/* <h4> below just fixed data. So we know what's inside</h4>
                 <section>
                     <header>Selected Booking ID: {this.props.selectedBooking.id}</header>
                     <main>
@@ -42,7 +38,7 @@ class BookingDetails extends Component {
                         <p>Customer: {this.props.selectedBooking.customer.name} </p>
                     </main>
                 
-                </section>
+                </section> */}
             </>
         )
     }
