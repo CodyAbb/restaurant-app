@@ -8,6 +8,7 @@ function BookingContainer() {
   const [bookings, setBookings] = useState([]);
   const [bookingSlots, setBookingSlots] = useState(["19:00", "20:00", "21:00", "22:00"]);
   const [selectedBooking, setSelectedBooking] = useState({});
+  const [availableTimes, setAvailableTimes] = useState(["12:00", "12:30", "13:00", "13:30"])
 
   useEffect(() => {
     fetch("http://localhost:8080/bookings")
@@ -30,7 +31,7 @@ function BookingContainer() {
     <>
       <p>Hello I am the booking container</p>
       <FormBox bookings={bookings}/>
-      <BookingDetails selectedBooking={selectedBooking} />
+      <BookingDetails selectedBooking={selectedBooking} availableTimes={availableTimes} />
       <BookingList bookings={bookings} handleBookingItemClick={handleBookingItemClick}/>
       <Graph bookings={bookings} bookingSlots={bookingSlots}></Graph>
       <p>{}</p>
