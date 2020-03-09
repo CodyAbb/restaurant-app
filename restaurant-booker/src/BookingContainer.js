@@ -7,7 +7,7 @@ import BookingDetails from './BookingDetails/BookingDetails.js'
 function BookingContainer() {
   const [bookings, setBookings] = useState([]);
   const [bookingSlots, setBookingSlots] = useState(["19:00", "20:00", "21:00", "22:00"]);
-  const [selectedBooking, setSelectedBooking] = useState({});
+  const [selectedBooking, setSelectedBooking] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:8080/bookings/customerAndDesk")
@@ -25,6 +25,8 @@ function BookingContainer() {
     let selectedBooking = findBookingById(itemId)
     setSelectedBooking(selectedBooking)
   }
+
+  // useEffect(() => {handleBookingItemClick()}, [])
 
   return (
     <>
