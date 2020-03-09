@@ -17,7 +17,7 @@ function Booking ({bookingValue, handleBookingItemClick}){
             <br></br>
             {bookingValue.numberOfPeople}
             <br></br>
-            {/* {bookingValue.customer.name} */}
+            {bookingValue.customer.name}
             <br></br>
             <button onClick={handleEditBooking}>Edit</button>
         </li>

@@ -10,10 +10,10 @@ function BookingContainer() {
   const [selectedBooking, setSelectedBooking] = useState({});
 
   useEffect(() => {
-    fetch("http://localhost:8080/bookings")
+    fetch("http://localhost:8080/bookings/customerAndDesk")
       .then(res => res.json())
-      .then(response => response._embedded)
-      .then(result => setBookings(result.bookings))
+      // .then(response => console.log(response))
+      .then(result => setBookings(result))
       .catch(error => console.log(error));
   }, []);
 
