@@ -3,13 +3,13 @@ import Axios from 'axios';
 import BookingList from './BookingList'
 
 class FormBox extends Component {
-    constructor(props){
-        super(props)
+    constructor({bookings, bookingSlots}){
+        super({bookings, bookingSlots})
         this.state = {
             pax: 0,
             date: "",
             selectedTime: "",
-            availableTimes: ["12:00", "12:30", "13:00", "13:30"],
+            // availableTimes: ["12:00", "12:30", "13:00", "13:30"],
             customerName: "",
             customerEmail: "",
             customerContactNumber: ""
@@ -97,7 +97,7 @@ class FormBox extends Component {
 
 
     render() {
-        const populateTimeOption = this.state.availableTimes.map((time, index) => {
+        const populateTimeOption = this.props.bookingSlots.map((time, index) => {
             return <option key={index} value={time}>{time}</option>
         })
 

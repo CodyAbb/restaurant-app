@@ -40,7 +40,7 @@ function BookingContainer() {
   return (
     <>
       <p>Hello I am the booking container</p>
-      <FormBox bookings={bookings}/>
+      <FormBox bookings={bookings} bookingSlots={bookingSlots}/>
       <BookingDetails selectedBooking={selectedBooking} bookingSlots={bookingSlots}/>
       <BookingList bookings={bookings} handleBookingItemClick={handleBookingItemClick}/>
       <Graph bookings={bookings} bookingSlots={bookingSlots} tables={tables}></Graph>

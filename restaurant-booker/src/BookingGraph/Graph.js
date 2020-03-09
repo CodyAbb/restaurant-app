@@ -34,8 +34,9 @@ function Graph ({bookings, bookingSlots, tables}) {
                 let findTable = table.bookings.find(({time}) => {
                     return  bookingSlot >= time && bookingSlot <= getEndTime(time) 
                 }) 
-                if(findTable) {                    
-                return <td className="entry"><a href=""> Customer: {findTable.customer.name} <br/> People: {findTable.numberOfPeople}</a></td>
+                if(findTable) {
+                let findCustomer = findTable.customer ? findTable.customer.name : ""                  
+                return <td className="entry"><a href=""> Customer: {findCustomer} <br/> People: {findTable.numberOfPeople}</a></td>
                 }
                 else {
                 return <td>No Bookings for this time</td>
