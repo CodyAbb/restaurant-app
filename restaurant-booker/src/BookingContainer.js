@@ -32,7 +32,7 @@ function BookingContainer() {
     <>
       <p>Hello I am the booking container</p>
       <FormBox bookings={bookings}/>
-      <BookingDetails selectedBooking={selectedBooking} />
+      <BookingDetails selectedBooking={selectedBooking} bookingSlots={bookingSlots}/>
       <BookingList bookings={bookings} handleBookingItemClick={handleBookingItemClick}/>
       <Graph bookings={bookings} bookingSlots={bookingSlots}></Graph>
       <p>{}</p>
