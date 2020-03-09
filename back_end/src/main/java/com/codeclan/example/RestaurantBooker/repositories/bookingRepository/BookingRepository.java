@@ -7,7 +7,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 
-public interface BookingRepository extends JpaRepository<Booking, Long> {
+public interface BookingRepository extends JpaRepository<Booking, Long>, BookingRepositoryCustom {
     List<Booking> findByDate(String date);
+    List<Booking> getAllBookingsWithCustomer();
 }
 
