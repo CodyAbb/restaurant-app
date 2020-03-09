@@ -23,7 +23,7 @@ function BookingUpdateForm({selectedBooking, bookingSlots}) {
 
 
     const populateTimeOption = bookingSlots.map((timeSlot, index) => {
-        let isItSelected = timeSlot===time ? "selected" : ""
+        let isItSelected = timeSlot === time ? "selected" : ""
 
         return <option key={index} value={time} selected={isItSelected} >{time}</option>
     })

@@ -44,7 +44,7 @@ function BookingContainer() {
       <BookingDetails selectedBooking={selectedBooking} bookingSlots={bookingSlots}/>
       <BookingList bookings={bookings} handleBookingItemClick={handleBookingItemClick}/>
       <Graph bookings={bookings} bookingSlots={bookingSlots} tables={tables}></Graph>
-      <p>{}</p>
+      <p></p>
     </>
   );
 }

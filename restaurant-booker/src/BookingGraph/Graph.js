@@ -2,6 +2,7 @@ import React, { Component, useState } from "react";
 import './Graph.css'
 
 function Graph ({bookings, bookingSlots, tables}) {
+    const [displayDate, setdisplayDate] = useState("")
     // const [tables, setTables] = useState([
     //     {id: 1, name: "table1", pax: 2, priority: 1, duration: 1, accessibility: true, bookings: 
     //         [{id:1, time: "19:00", date: "01/01/2020", numberOfPeople: 2}]
@@ -19,7 +20,9 @@ function Graph ({bookings, bookingSlots, tables}) {
     //     }
     // ]);
 
-    
+    function handleChangeDate(event){
+        return setdisplayDate(event.target.value)
+    }
     
 
     const createTD = tables.map(table => 
@@ -60,13 +63,18 @@ function Graph ({bookings, bookingSlots, tables}) {
         //     return <p>{item.name} || first booking: {item.bookings.time}</p>
         // })
 
-        const createHeader = bookingSlots.map(item => {
-        return <th>{item}</th>
-        })
+    const createHeader = bookingSlots.map(item => {
+    return <th>{item}</th>
+    })
+
 
         return(
             <>
             <h3>This is the Graph section</h3>
+            <input 
+                type="date" 
+                value={displayDate} 
+                onChange={handleChangeDate}/>
             <table> 
                 <tbody>
                     <tr>
