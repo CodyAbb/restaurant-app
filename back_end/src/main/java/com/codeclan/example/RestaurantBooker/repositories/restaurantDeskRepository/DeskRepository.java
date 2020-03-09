@@ -13,4 +13,5 @@ public interface DeskRepository extends JpaRepository<Desk, Long> {
 
     @Query(value = "SELECT * FROM desks LEFT OUTER JOIN bookings ON desks.id = bookings.desk_id AND date = ?1", nativeQuery = true)
     List<Desk> getAllBookingsForAGivenDesk(String date);
+
 }
