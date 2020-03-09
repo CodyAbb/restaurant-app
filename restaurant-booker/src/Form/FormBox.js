@@ -9,9 +9,15 @@ class FormBox extends Component {
             pax: 0,
             date: "",
             selectedTime: "",
-            availableTimes: ["12:00", "12:30", "13:00", "13:30"]
+            availableTimes: ["12:00", "12:30", "13:00", "13:30"],
+            customerName: "",
+            customerEmail: "",
+            customerContactNumber: ""
+            // customerAccessibility: false
         }
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleCustomerSubmit = this.handleCustomerSubmit.bind(this)
+        // this.handleCustomerAccessibility = this.handleCustomerAccessibility.bind(this)
     }
 
     // formatDate(dateString) {
@@ -23,16 +29,20 @@ class FormBox extends Component {
     handlePax = (event) => this.setState({pax: event.target.value})
     
     handleDate = (event) => {
-        // event.preventDefault()
-
-        // const dateValue = event.target.value
-        // const formattedDate = this.formatDate(dateValue)
-        // console.log(formattedDate);
-        
         this.setState({date: event.target.value})
     }
 
     handleTime = (event) => this.setState({selectedTime: event.target.value})
+    handleCustomerName = (event) => this.setState({customerName: event.target.value})
+    handleCustomerEmail = (event) => this.setState({customerEmail: event.target.value})
+    handleCustomerContactNumber = (event) => this.setState({customerContactNumber: event.target.value})
+    // handleCustomerAccessibility (event) {
+    //     const target = event.target;
+    //     const value = target.type === 'checkbox' ? target.checked : target.value
+    //     const name = target.name;
+
+    //     this.setState({customerAccessibility: value})
+    // }
 
     handleSubmit(event) {
         event.preventDefault()
@@ -57,7 +67,23 @@ class FormBox extends Component {
       });
     }
 
+    handleCustomerSubmit(event){
+        event.preventDefault()
 
+        const name = this.state.customerName;
+        const emailAddress = this.state.customerEmail;
+        const contactNumber = this.state.customerContactNumber;
+        // const customerAccessibility = this.state.customerAccessibility;
+        JSON.stringify({name, emailAddress, contactNumber})
+        console.log(JSON.stringify({name, emailAddress, contactNumber}))
+        Axios
+        .post(`http://localhost:8080/customers`, {
+            name, emailAddress, contactNumber
+        })
+        .then(res => {
+            console.log(res);
+        })
+    }
 
     // getToday(){
     //     var today = new Date();
@@ -92,6 +118,18 @@ class FormBox extends Component {
                     </select>
 
                     <input type="submit" />
+                </form>
+
+                <form onSubmit={this.handleCustomerSubmit}>
+                    <input type="text" placeholder="Customer Name" value={this.state.customerName} onChange={this.handleCustomerName}/>
+                    <input type="text" placeholder="Email Address" value={this.state.customerEmail} onChange={this.handleCustomerEmail}/>
+                    <input type="text" placeholder="Contact Number" value={this.state.customerContactNumber} onChange={this.handleCustomerContactNumber}/>
+                    {/* <>
+                    <p>Accessibility Required: </p>
+                    <input name="customerAccessibility" type="checkbox" checked={this.state.customerAccessibility} onChange={this.handleCustomerAccessibility}/>
+                    </> */}
+
+                    <input type="submit"/>
                 </form>
 
             </>
