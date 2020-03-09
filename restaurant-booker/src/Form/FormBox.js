@@ -17,14 +17,15 @@ class FormBox extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleCustomerSubmit = this.handleCustomerSubmit.bind(this)
+        this.formatDate = this.formatDate.bind(this)
         // this.handleCustomerAccessibility = this.handleCustomerAccessibility.bind(this)
     }
 
-    // formatDate(dateString) {
-    //  const dateArray = dateString.split("-");
-    //  return dateArray.reverse().join("/")
+    formatDate(dateString) {
+     const dateArray = dateString.split("-");
+     return dateArray.reverse().join("/")
      
-    // }
+    }
 
     handlePax = (event) => this.setState({pax: event.target.value})
     
@@ -48,7 +49,7 @@ class FormBox extends Component {
         event.preventDefault()
         
         const pax = this.state.pax;
-        const date = this.state.date;
+        const date = this.formatDate(this.state.date);
         const time = this.state.selectedTime;
         const desk = `http://localhost:8080/desks/2`
         JSON.stringify({ pax, date, time, desk });
