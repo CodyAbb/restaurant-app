@@ -48,7 +48,8 @@ class FormBox extends Component {
         .post(`http://localhost:8080/bookings`, {
             pax,
             date,
-            time
+            time,
+            desk
         })
         .then(res => {
             console.log(res);
