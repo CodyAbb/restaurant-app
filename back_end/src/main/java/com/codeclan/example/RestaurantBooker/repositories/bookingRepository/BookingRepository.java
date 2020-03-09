@@ -1,7 +1,6 @@
 package com.codeclan.example.RestaurantBooker.repositories.bookingRepository;
 
 import com.codeclan.example.RestaurantBooker.Models.Booking;
-import com.codeclan.example.RestaurantBooker.projections.EmbedDesk;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
