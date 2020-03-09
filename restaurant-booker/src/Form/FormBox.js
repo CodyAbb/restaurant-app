@@ -91,23 +91,24 @@ class FormBox extends Component {
       console.log(res);
     });
 
-    let templateParams = {
-      emailAddress: emailAddress,
-      name: name,
-      time: time,
-      date: date
-    };
+    // UNCOMMENT THESE TWO FUNCTIONS WHEN IMPLEMENTING EMAIL
+    // let templateParams = {
+    //   emailAddress: emailAddress,
+    //   name: name,
+    //   time: time,
+    //   date: date
+    // };
 
-    emailjs
-      .send("gmail", "restaurantconfirmation", templateParams, creds.USERID)
-      .then(
-        result => {
-          console.log(result.text);
-        },
-        error => {
-          console.log(error.text);
-        }
-      );
+    // emailjs
+    //   .send("gmail", "restaurantconfirmation", templateParams, creds.USERID)
+    //   .then(
+    //     result => {
+    //       console.log(result.text);
+    //     },
+    //     error => {
+    //       console.log(error.text);
+    //     }
+    //   );
   }
 
   // getToday(){
