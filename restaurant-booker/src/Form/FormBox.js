@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 import BookingList from './BookingList'
 
 class FormBox extends Component {
@@ -10,18 +11,49 @@ class FormBox extends Component {
             selectedTime: "",
             availableTimes: ["12:00", "12:30", "13:00", "13:30"]
         }
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
+
+    // formatDate(dateString) {
+    //  const dateArray = dateString.split("-");
+    //  return dateArray.reverse().join("/")
+     
+    // }
 
     handlePax = (event) => this.setState({pax: event.target.value})
     
-    handleDate = (event) => this.setState({date: event.target.value})
+    handleDate = (event) => {
+        // event.preventDefault()
+
+        // const dateValue = event.target.value
+        // const formattedDate = this.formatDate(dateValue)
+        // console.log(formattedDate);
+        
+        this.setState({date: event.target.value})
+    }
 
     handleTime = (event) => this.setState({selectedTime: event.target.value})
 
     handleSubmit(event) {
         event.preventDefault()
-        // TODO
-        // this is where the db will be called to create a new booking
+        
+        const pax = this.state.pax;
+        const date = this.state.date;
+        const time = this.state.selectedTime;
+        const desk = `http://localhost:8080/desks/2`
+        JSON.stringify({ pax, date, time, desk });
+
+        Axios
+        
+        .post(`http://localhost:8080/bookings`, {
+            pax,
+            date,
+            time
+        })
+        .then(res => {
+            console.log(res);
+            console.log(res.data);
+      });
     }
 
 
