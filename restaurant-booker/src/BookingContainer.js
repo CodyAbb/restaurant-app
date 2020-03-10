@@ -8,6 +8,7 @@ function BookingContainer() {
   const [bookings, setBookings] = useState([]);
   const [bookingSlots, setBookingSlots] = useState(["19:00", "20:00", "21:00", "22:00"]);
   const [selectedBooking, setSelectedBooking] = useState(null);
+  const [tables, setTables] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:8080/bookings/customerAndDesk")
@@ -16,6 +17,14 @@ function BookingContainer() {
       .then(result => setBookings(result))
       .catch(error => console.log(error));
   }, []);
+
+  useEffect(() => {
+    fetch( "http://localhost:8080/desks/getAllBookingsForAGivenDesk?date=06/07/2020")
+    .then(res => res.json())
+    // .then(response => console.log(response))
+    .then(result => setTables(result))
+    .catch(error => console.log(error));
+}, []);
 
   function findBookingById(id) {
     return bookings.find(item => item.id === id)
@@ -31,11 +40,11 @@ function BookingContainer() {
   return (
     <>
       <p>Hello I am the booking container</p>
-      <FormBox bookings={bookings}/>
+      <FormBox bookings={bookings} bookingSlots={bookingSlots}/>
       <BookingDetails selectedBooking={selectedBooking} bookingSlots={bookingSlots}/>
       <BookingList bookings={bookings} handleBookingItemClick={handleBookingItemClick}/>
-      <Graph bookings={bookings} bookingSlots={bookingSlots}></Graph>
-      <p>{}</p>
+      <Graph bookings={bookings} bookingSlots={bookingSlots} tables={tables}></Graph>
+      <p></p>
     </>
   );
 }
