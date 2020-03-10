@@ -118,6 +118,10 @@ class FormBox extends Component {
   //     today = mm + '/' + dd + '/' + yyyy;
   // }
 
+  handleCloseModal = () => {
+    this.props.closePop();
+  };
+
   render() {
     const populateTimeOption = this.props.bookingSlots.map((time, index) => {
       return (
@@ -127,52 +131,60 @@ class FormBox extends Component {
       );
     });
 
+    if (!this.props.showPop) {
+      return null;
+    }
     return (
       <>
-        <p>Hello I am the FormBox</p>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            type="number"
-            placeholder="Add number of customers"
-            value={this.state.pax}
-            onChange={this.handlePax}
-          />
-          <input
-            type="date"
-            value={this.state.date}
-            onChange={this.handleDate}
-          />
-          <select onChange={this.handleTime}>{populateTimeOption}</select>
+        <div className="newBookingModal">
+          <p>Hello I am the FormBox</p>
+          <button onClick={this.handleCloseModal}>&times;</button>
+          <div className="newBookingModalContent">
+            <form onSubmit={this.handleSubmit}>
+              <input
+                type="number"
+                placeholder="Add number of customers"
+                value={this.state.pax}
+                onChange={this.handlePax}
+              />
+              <input
+                type="date"
+                value={this.state.date}
+                onChange={this.handleDate}
+              />
+              <select onChange={this.handleTime}>{populateTimeOption}</select>
 
-          <input type="submit" />
-        </form>
+              <input type="submit" />
+            </form>
 
-        <form onSubmit={this.handleCustomerSubmit}>
-          <input
-            type="text"
-            placeholder="Customer Name"
-            value={this.state.customerName}
-            onChange={this.handleCustomerName}
-          />
-          <input
-            type="text"
-            placeholder="Email Address"
-            value={this.state.customerEmail}
-            onChange={this.handleCustomerEmail}
-          />
-          <input
-            type="text"
-            placeholder="Contact Number"
-            value={this.state.customerContactNumber}
-            onChange={this.handleCustomerContactNumber}
-          />
-          {/* <>
+            <form onSubmit={this.handleCustomerSubmit}>
+              <input
+                type="text"
+                placeholder="Customer Name"
+                value={this.state.customerName}
+                onChange={this.handleCustomerName}
+              />
+              <input
+                type="text"
+                placeholder="Email Address"
+                value={this.state.customerEmail}
+                onChange={this.handleCustomerEmail}
+              />
+              <input
+                type="text"
+                placeholder="Contact Number"
+                value={this.state.customerContactNumber}
+                onChange={this.handleCustomerContactNumber}
+              />
+              {/* <>
                     <p>Accessibility Required: </p>
                     <input name="customerAccessibility" type="checkbox" checked={this.state.customerAccessibility} onChange={this.handleCustomerAccessibility}/>
                     </> */}
 
-          <input type="submit" />
-        </form>
+              <input type="submit" />
+            </form>
+          </div>
+        </div>
       </>
     );
   }
