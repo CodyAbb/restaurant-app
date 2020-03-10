@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import './Graph.css'
 
 function Graph ({bookings, bookingSlots, tables}) {
-    const [displayDate, setdisplayDate] = useState("")
+    const [displayDate, setdisplayDate] = useState(Date.now())
     // const [tables, setTables] = useState([
     //     {id: 1, name: "table1", pax: 2, priority: 1, duration: 1, accessibility: true, bookings: 
     //         [{id:1, time: "19:00", date: "01/01/2020", numberOfPeople: 2}]
@@ -20,13 +20,25 @@ function Graph ({bookings, bookingSlots, tables}) {
     //     }
     // ]);
 
+    function getToday(){
+        const date = new Date();
+        
+    }
+
     function handleChangeDate(event){
         return setdisplayDate(event.target.value)
     }
     
+    function filterTablesByBookingDate(dateString){
+        return tables.map(table => table.bookings.find(({date}) => date === dateString ))
+    }
 
     const createTD = tables.map(table => 
         {
+            console.log(displayDate);
+            
+        console.log(filterTablesByBookingDate(displayDate));
+        
         return <tr>
         <td>Table number: {table.id}</td>
         {bookingSlots.map(bookingSlot => {
