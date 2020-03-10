@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Axios from "axios";
 import emailjs from "emailjs-com";
 import BookingList from "./BookingList";
+import "./formbox.css";
 
 const creds = require("../config/idconfig");
 
