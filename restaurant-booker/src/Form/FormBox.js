@@ -18,7 +18,8 @@ class FormBox extends Component {
       customerEmail: "",
       customerContactNumber: "",
       newBookingId: null,
-      customer_id: null
+      customer_id: null,
+      tableSelected: null
 
       // customerAccessibility: false
     };
@@ -37,16 +38,26 @@ class FormBox extends Component {
   handlePax = event => this.setState({ pax: event.target.value });
 
   handleDate = event => {
-    this.setState({ date: event.target.value });
+    this.setState({ date: event.target.value });    
+    this.props.handleDateSelected(event.target.value)
+
   };
 
-  handleTime = event => this.setState({ selectedTime: event.target.value });
+  handleTime = event => {
+    console.log(event.target.value);
+
+      this.setState({ selectedTime: event.target.value })
+      this.props.handleTimeSelected(event.target.value)
+  };
   handleCustomerName = event =>
     this.setState({ customerName: event.target.value });
   handleCustomerEmail = event =>
     this.setState({ customerEmail: event.target.value });
   handleCustomerContactNumber = event =>
     this.setState({ customerContactNumber: event.target.value });
+    handleTable = event => {
+    this.setState({tableSelected: event.target.value})
+    }
   // handleCustomerAccessibility (event) {
   //     const target = event.target;
   //     const value = target.type === 'checkbox' ? target.checked : target.value
@@ -154,6 +165,8 @@ class FormBox extends Component {
   };
 
   render() {
+    // const populateTableOption = 
+
     const populateTimeOption = this.props.bookingSlots.map((time, index) => {
       return (
         <option key={index} value={time}>
@@ -185,6 +198,7 @@ class FormBox extends Component {
                 onChange={this.handleDate}
               />
               <select onChange={this.handleTime}>{populateTimeOption}</select>
+              {/* <select onChange={this.handleTable}>{populateTableOption}</select> */}
 
               <input type="submit" />
             </form>
@@ -217,7 +231,7 @@ class FormBox extends Component {
             </form>
           </div>
         </div>
-        <div class="modal-overlay" id="modal-overlay"></div>
+        <div className="modal-overlay" id="modal-overlay"></div>
       </>
     );
   }

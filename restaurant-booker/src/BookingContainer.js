@@ -15,6 +15,9 @@ function BookingContainer() {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [tables, setTables] = useState([]);
   const [popShow, setPopShow] = useState(false);
+  const [tablesAvailable, setTablesAvailable] = useState([]);
+  const [dateSelected, setDateSelected] = useState(null);
+  const [timeSelected, setTimeSelected] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:8080/bookings/customerAndDesk")
@@ -34,6 +37,22 @@ function BookingContainer() {
       .catch(error => console.log(error));
   }, []);
 
+  useEffect(() => {
+    // if(!dateSelected && !timeSelected) {
+    //   return null
+    // }
+    // else {
+
+    
+    console.log(`http://localhost:8080/desks/getAllDesksByTimeAndDate?date=${dateSelected}&time=${timeSelected}`);
+    
+    fetch(`http://localhost:8080/desks/getAllDesksByTimeAndDate?date=${dateSelected}&time=${timeSelected}`)
+      .then(res => res.json())
+      .then(response => console.log(response))
+      .then(result => setTablesAvailable(result))
+      .catch(error => console.log(error));
+  }, [dateSelected, timeSelected]);
+
   function findBookingById(id) {
     return bookings.find(item => item.id === id);
   }
@@ -51,6 +70,15 @@ function BookingContainer() {
     setPopShow(false);
   }
 
+  function handleTimeSelected(time) {
+    setTimeSelected(time);
+  }
+  
+  function handleDateSelected(date){
+    
+    setDateSelected(date)
+  }
+
   // useEffect(() => {handleBookingItemClick()}, [])
 
   return (
@@ -65,6 +93,9 @@ function BookingContainer() {
         bookingSlots={bookingSlots}
         showPop={popShow}
         closePop={closePop}
+        tablesAvailable={tablesAvailable}
+        handleTimeSelected={handleTimeSelected}
+        handleDateSelected={handleDateSelected}
       />
       <BookingDetails
         selectedBooking={selectedBooking}
