@@ -17,7 +17,7 @@ class FormBox extends Component {
       customerName: "",
       customerEmail: "",
       customerContactNumber: "",
-      newBookingId: null,
+      newBookingId: null
       // customerAccessibility: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -71,9 +71,7 @@ class FormBox extends Component {
     }).then(res => {
       console.log(res);
       console.log(`this is new booking id ${res.data.id}`);
-      this.setState({newBookingId: res.data.id}) 
-
-      
+      this.setState({ newBookingId: res.data.id });
     });
   }
 
@@ -95,11 +93,10 @@ class FormBox extends Component {
       emailAddress,
       contactNumber
     }).then(res => {
-        customer_id = res.data.id;
-        
+      customer_id = res.data.id;
+
       console.log(`this is new customer data from res ${res.data.id}`);
     });
-
 
     // put
     // const pax = this.state.pax;
@@ -117,29 +114,25 @@ class FormBox extends Component {
     // }).then(res => {
     //   console.log(res);
     //   console.log(`this is new booking id ${res.data.id}`);
-    //   this.setState({newBookingId: res.data.id}) 
+    //   this.setState({newBookingId: res.data.id})
 
-      
     // });
 
     // patch
-    
+
     console.log(`${customer_id}`);
     const customer = `http://localhost:8080/customers/${customer_id}`;
 
-    JSON.stringify({customer});
-    console.log(JSON.stringify({customer}));
-    
+    JSON.stringify({ customer });
+    console.log(JSON.stringify({ customer }));
+
     console.log(`http://localhost:8080/bookings/${this.state.newBookingId}`);
-    
+
     Axios.patch(`http://localhost:8080/bookings/${this.state.newBookingId}`, {
-        customer: customer
-      }).then(res => {
-        console.log(`this is the res from the patch ${res}`);
-      });
-
-
-
+      customer: customer
+    }).then(res => {
+      console.log(`this is the res from the patch ${res}`);
+    });
 
     // UNCOMMENT THESE TWO FUNCTIONS WHEN IMPLEMENTING EMAIL
     // let templateParams = {
@@ -187,8 +180,9 @@ class FormBox extends Component {
     return (
       <>
         <div className="newBookingModal">
-          <p>Hello I am the FormBox</p>
-          <button onClick={this.handleCloseModal}>&times;</button>
+          <button className="closeButton" onClick={this.handleCloseModal}>
+            &times;
+          </button>
           <div className="newBookingModalContent">
             <form onSubmit={this.handleSubmit}>
               <input
@@ -235,6 +229,7 @@ class FormBox extends Component {
             </form>
           </div>
         </div>
+        <div class="modal-overlay" id="modal-overlay"></div>
       </>
     );
   }
