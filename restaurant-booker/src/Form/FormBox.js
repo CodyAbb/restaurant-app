@@ -17,6 +17,8 @@ class FormBox extends Component {
       customerEmail: "",
       customerContactNumber: "",
       newBookingId: null,
+      customer_id: null
+
       // customerAccessibility: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -85,7 +87,6 @@ class FormBox extends Component {
     const name = this.state.customerName;
     const emailAddress = this.state.customerEmail;
     const contactNumber = this.state.customerContactNumber;
-    let customer_id = null;
     // const customerAccessibility = this.state.customerAccessibility;
     JSON.stringify({ name, emailAddress, contactNumber });
     // console.log(JSON.stringify({ name, emailAddress, contactNumber }));
@@ -94,51 +95,13 @@ class FormBox extends Component {
       emailAddress,
       contactNumber
     }).then(res => {
-        customer_id = res.data.id;
+        this.setState({customer_id: res.data.id});
         
       console.log(`this is new customer data from res ${res.data.id}`);
-    });
-
-
-    // put
-    // const pax = this.state.pax;
-    // const desk = `http://localhost:8080/desks/2`;
-    // const customer = `http://localhost:8080/customers/${customer_id}`;
-
-    // JSON.stringify({ pax, date, time, desk, customer });
-
-    // Axios.put(`http://localhost:8080/bookings/${this.state.newBookingId}`, {
-    //   pax,
-    //   date,
-    //   time,
-    //   desk,
-    //   customer
-    // }).then(res => {
-    //   console.log(res);
-    //   console.log(`this is new booking id ${res.data.id}`);
-    //   this.setState({newBookingId: res.data.id}) 
-
-      
-    // });
-
-    // patch
-    
-    console.log(`${customer_id}`);
-    const customer = `http://localhost:8080/customers/${customer_id}`;
-
-    JSON.stringify({customer});
-    console.log(JSON.stringify({customer}));
-    
-    console.log(`http://localhost:8080/bookings/${this.state.newBookingId}`);
-    
-    Axios.patch(`http://localhost:8080/bookings/${this.state.newBookingId}`, {
-        customer: customer
-      }).then(res => {
-        console.log(`this is the res from the patch ${res}`);
-      });
-
-
-
+    })
+    .then(res =>{
+        this.patchCustomerIdInBooking()
+    } );
 
     // UNCOMMENT THESE TWO FUNCTIONS WHEN IMPLEMENTING EMAIL
     // let templateParams = {
@@ -158,6 +121,23 @@ class FormBox extends Component {
     //     }
     //   );
   }
+
+      // patch
+      patchCustomerIdInBooking(){
+        console.log(`${this.state.customer_id}`);
+        const customer = `http://localhost:8080/customers/${this.state.customer_id}`;
+    
+        JSON.stringify({customer});
+        console.log(JSON.stringify({customer}));
+        
+        console.log(`http://localhost:8080/bookings/${this.state.newBookingId}`);
+        
+        Axios.patch(`http://localhost:8080/bookings/${this.state.newBookingId}`, {
+            customer: customer
+          }).then(res => {
+            console.log(`this is the res from the patch ${res}`);
+          });
+        }
 
   // getToday(){
   //     var today = new Date();
