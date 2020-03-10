@@ -3,6 +3,8 @@ import FormBox from "./Form/FormBox.js";
 import BookingList from "./Form/BookingList.js";
 import Graph from "./BookingGraph/Graph.js";
 import BookingDetails from "./BookingDetails/BookingDetails.js";
+import { differenceWith, isEqual } from "lodash/fp"
+
 
 function BookingContainer() {
   const [bookings, setBookings] = useState([]);
@@ -15,7 +17,8 @@ function BookingContainer() {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [tables, setTables] = useState([]);
   const [popShow, setPopShow] = useState(false);
-  const [tablesAvailable, setTablesAvailable] = useState([]);
+  const [tablesAvailable, setTablesAvailable] = useState([])
+  const [tablesNotAvailable, setTablesNotAvailable] = useState([]);
   const [dateSelected, setDateSelected] = useState(null);
   const [timeSelected, setTimeSelected] = useState(null);
 
@@ -38,18 +41,19 @@ function BookingContainer() {
   }, []);
 
   useEffect(() => {
-    // if(!dateSelected && !timeSelected) {
-    //   return null
-    // }
-    // else {
-
-    
-    console.log(`http://localhost:8080/desks/getAllDesksByTimeAndDate?date=${dateSelected}&time=${timeSelected}`);
-    
+    // console.log(`http://localhost:8080/desks/getAllDesksByTimeAndDate?date=${dateSelected}&time=${timeSelected}`);
     fetch(`http://localhost:8080/desks/getAllDesksByTimeAndDate?date=${dateSelected}&time=${timeSelected}`)
       .then(res => res.json())
-      .then(response => console.log(response))
-      .then(result => setTablesAvailable(result))
+      .then(unavailableTables => {
+        // console.log("tables:",tables);
+        // console.log("unavailableTables:", unavailableTables);
+        // const availableTables = tables.filter(table => !unavailableTables.some(unavailableTable => unavailableTable.id === table.id))
+        const availableTables = differenceWith(isEqual, tables, unavailableTables)
+        // console.log(availableTables);
+        
+        setTablesAvailable(availableTables)
+      })
+      
       .catch(error => console.log(error));
   }, [dateSelected, timeSelected]);
 
@@ -78,8 +82,6 @@ function BookingContainer() {
     
     setDateSelected(date)
   }
-
-  // useEffect(() => {handleBookingItemClick()}, [])
 
   return (
     <>

@@ -25,15 +25,7 @@ class FormBox extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCustomerSubmit = this.handleCustomerSubmit.bind(this);
-    // this.formatDate = this.formatDate.bind(this)
-    // this.handleCustomerAccessibility = this.handleCustomerAccessibility.bind(this)
   }
-
-  // formatDate(dateString) {
-  //  const dateArray = dateString.split("-");
-  //  return dateArray.reverse().join("/")
-
-  // }
 
   handlePax = event => this.setState({ pax: event.target.value });
 
@@ -135,7 +127,6 @@ class FormBox extends Component {
     //   );
   }
 
-  // patch
   patchCustomerIdInBooking() {
     console.log(`${this.state.customer_id}`);
     const customer = `http://localhost:8080/customers/${this.state.customer_id}`;
@@ -164,8 +155,18 @@ class FormBox extends Component {
     this.props.closePop();
   };
 
+  
+
   render() {
-    // const populateTableOption = 
+
+    const populateAvailableTableOptions = this.props.tablesAvailable.map((table) => {
+        return (
+          <option key={table.id} value={table}>
+            {table.id}
+          </option>
+        );
+      });
+    
 
     const populateTimeOption = this.props.bookingSlots.map((time, index) => {
       return (
@@ -197,8 +198,11 @@ class FormBox extends Component {
                 value={this.state.date}
                 onChange={this.handleDate}
               />
-              <select onChange={this.handleTime}>{populateTimeOption}</select>
-              {/* <select onChange={this.handleTable}>{populateTableOption}</select> */}
+              <select onChange={this.handleTime}>
+                  <option default>select a time</option>
+                  {populateTimeOption}
+                  </select>
+              <select onChange={this.handleTable}>{populateAvailableTableOptions}</select>
 
               <input type="submit" />
             </form>
