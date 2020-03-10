@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
 import BookingList from "./BookingList";
 
 const creds = require("../config/idconfig");
@@ -15,7 +15,8 @@ class FormBox extends Component {
       // availableTimes: ["12:00", "12:30", "13:00", "13:30"],
       customerName: "",
       customerEmail: "",
-      customerContactNumber: ""
+      customerContactNumber: "",
+      newBookingId: null,
       // customerAccessibility: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -58,6 +59,7 @@ class FormBox extends Component {
     const date = this.state.date;
     const time = this.state.selectedTime;
     const desk = `http://localhost:8080/desks/2`;
+
     JSON.stringify({ pax, date, time, desk });
 
     Axios.post(`http://localhost:8080/bookings`, {
@@ -67,7 +69,10 @@ class FormBox extends Component {
       desk
     }).then(res => {
       console.log(res);
-      console.log(res.data);
+      console.log(`this is new booking id ${res.data.id}`);
+      this.setState({newBookingId: res.data.id}) 
+
+      
     });
   }
 
@@ -80,16 +85,60 @@ class FormBox extends Component {
     const name = this.state.customerName;
     const emailAddress = this.state.customerEmail;
     const contactNumber = this.state.customerContactNumber;
+    let customer_id = null;
     // const customerAccessibility = this.state.customerAccessibility;
     JSON.stringify({ name, emailAddress, contactNumber });
-    console.log(JSON.stringify({ name, emailAddress, contactNumber }));
+    // console.log(JSON.stringify({ name, emailAddress, contactNumber }));
     Axios.post(`http://localhost:8080/customers`, {
       name,
       emailAddress,
       contactNumber
     }).then(res => {
-      console.log(res);
+        customer_id = res.data.id;
+        
+      console.log(`this is new customer data from res ${res.data.id}`);
     });
+
+
+    // put
+    // const pax = this.state.pax;
+    // const desk = `http://localhost:8080/desks/2`;
+    // const customer = `http://localhost:8080/customers/${customer_id}`;
+
+    // JSON.stringify({ pax, date, time, desk, customer });
+
+    // Axios.put(`http://localhost:8080/bookings/${this.state.newBookingId}`, {
+    //   pax,
+    //   date,
+    //   time,
+    //   desk,
+    //   customer
+    // }).then(res => {
+    //   console.log(res);
+    //   console.log(`this is new booking id ${res.data.id}`);
+    //   this.setState({newBookingId: res.data.id}) 
+
+      
+    // });
+
+    // patch
+    
+    console.log(`${customer_id}`);
+    const customer = `http://localhost:8080/customers/${customer_id}`;
+
+    JSON.stringify({customer});
+    console.log(JSON.stringify({customer}));
+    
+    console.log(`http://localhost:8080/bookings/${this.state.newBookingId}`);
+    
+    Axios.patch(`http://localhost:8080/bookings/${this.state.newBookingId}`, {
+        customer: customer
+      }).then(res => {
+        console.log(`this is the res from the patch ${res}`);
+      });
+
+
+
 
     // UNCOMMENT THESE TWO FUNCTIONS WHEN IMPLEMENTING EMAIL
     // let templateParams = {
