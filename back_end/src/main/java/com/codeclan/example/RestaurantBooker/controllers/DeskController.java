@@ -18,4 +18,9 @@ public class DeskController {
     public List<Desk> getAllBookingsForAGivenDesk(String date){
         return deskRepository.getAllBookingsForAGivenDesk(date);
     }
+
+    @GetMapping(value = "/getAllDesksByTimeAndDate")
+    public List<Desk> getAllDesksByTimeAndDate(@RequestParam String date, @RequestParam String time) {
+        return deskRepository.getAllDesksByTimeAndDate(date, time);
+    }
 }
