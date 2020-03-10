@@ -13,7 +13,7 @@ public interface DeskRepository extends JpaRepository<Desk, Long>, DeskRepositor
     List<Desk> findByBookingsDate(String date);
     List<Desk> getAllDesksByTimeAndDate(String time, String date);
 //    List<Desk> findNotByBookingsDate(String date);
-    List<Desk> findDesksWhereIdNotNull();
+//    List<Desk> findDesksWhereIdNotNull();
 
     @Query(value = "SELECT * FROM desks LEFT OUTER JOIN bookings ON desks.id = bookings.desk_id AND date = ?1", nativeQuery = true)
     List<Desk> getAllBookingsForAGivenDesk(String date);
