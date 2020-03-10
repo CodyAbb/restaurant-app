@@ -60,6 +60,8 @@ class FormBox extends Component {
     const pax = this.state.pax;
     const date = this.state.date;
     const time = this.state.selectedTime;
+        // call a query and the back end returns a desk to be placed in the const desk below
+
     const desk = `http://localhost:8080/desks/2`;
 
     JSON.stringify({ pax, date, time, desk });
