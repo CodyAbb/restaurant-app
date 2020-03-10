@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Axios from "axios";
 // import emailjs from "emailjs-com";
 import BookingList from "./BookingList";
+import "./formbox.css";
 
 const creds = require("../config/idconfig");
 
@@ -74,9 +75,7 @@ class FormBox extends Component {
     }).then(res => {
       console.log(res);
       console.log(`this is new booking id ${res.data.id}`);
-      this.setState({newBookingId: res.data.id}) 
-
-      
+      this.setState({ newBookingId: res.data.id });
     });
   }
 
@@ -96,14 +95,15 @@ class FormBox extends Component {
       name,
       emailAddress,
       contactNumber
-    }).then(res => {
-        this.setState({customer_id: res.data.id});
-        
-      console.log(`this is new customer data from res ${res.data.id}`);
     })
-    .then(res =>{
-        this.patchCustomerIdInBooking()
-    } );
+      .then(res => {
+        this.setState({ customer_id: res.data.id });
+
+        console.log(`this is new customer data from res ${res.data.id}`);
+      })
+      .then(res => {
+        this.patchCustomerIdInBooking();
+      });
 
     // UNCOMMENT THESE TWO FUNCTIONS WHEN IMPLEMENTING EMAIL
     // let templateParams = {
@@ -124,22 +124,22 @@ class FormBox extends Component {
     //   );
   }
 
-      // patch
-      patchCustomerIdInBooking(){
-        console.log(`${this.state.customer_id}`);
-        const customer = `http://localhost:8080/customers/${this.state.customer_id}`;
-    
-        JSON.stringify({customer});
-        console.log(JSON.stringify({customer}));
-        
-        console.log(`http://localhost:8080/bookings/${this.state.newBookingId}`);
-        
-        Axios.patch(`http://localhost:8080/bookings/${this.state.newBookingId}`, {
-            customer: customer
-          }).then(res => {
-            console.log(`this is the res from the patch ${res}`);
-          });
-        }
+  // patch
+  patchCustomerIdInBooking() {
+    console.log(`${this.state.customer_id}`);
+    const customer = `http://localhost:8080/customers/${this.state.customer_id}`;
+
+    JSON.stringify({ customer });
+    console.log(JSON.stringify({ customer }));
+
+    console.log(`http://localhost:8080/bookings/${this.state.newBookingId}`);
+
+    Axios.patch(`http://localhost:8080/bookings/${this.state.newBookingId}`, {
+      customer: customer
+    }).then(res => {
+      console.log(`this is the res from the patch ${res}`);
+    });
+  }
 
   // getToday(){
   //     var today = new Date();
@@ -168,8 +168,9 @@ class FormBox extends Component {
     return (
       <>
         <div className="newBookingModal">
-          <p>Hello I am the FormBox</p>
-          <button onClick={this.handleCloseModal}>&times;</button>
+          <button className="closeButton" onClick={this.handleCloseModal}>
+            &times;
+          </button>
           <div className="newBookingModalContent">
             <form onSubmit={this.handleSubmit}>
               <input
@@ -216,6 +217,7 @@ class FormBox extends Component {
             </form>
           </div>
         </div>
+        <div class="modal-overlay" id="modal-overlay"></div>
       </>
     );
   }
