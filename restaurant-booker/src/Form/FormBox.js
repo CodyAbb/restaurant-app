@@ -160,11 +160,14 @@ class FormBox extends Component {
   render() {
 
     const populateAvailableTableOptions = this.props.tablesAvailable.map((table) => {
-        return (
-          <option key={table.id} value={table}>
-            {table.id}
-          </option>
-        );
+        if (table.pax >= this.state.pax) {
+            return (
+                <option key={table.id} value={table} >
+                  Table: {table.id} | {table.pax} pax
+                </option>
+              );
+        }
+        
       });
     
 
@@ -192,17 +195,22 @@ class FormBox extends Component {
                 placeholder="Add number of customers"
                 value={this.state.pax}
                 onChange={this.handlePax}
+                min="1"
+                required
               />
               <input
                 type="date"
                 value={this.state.date}
                 onChange={this.handleDate}
+                required
               />
-              <select onChange={this.handleTime}>
+              <select onChange={this.handleTime} required>
                   <option default>select a time</option>
                   {populateTimeOption}
                   </select>
-              <select onChange={this.handleTable}>{populateAvailableTableOptions}</select>
+              <select onChange={this.handleTable} required>
+              <option default>select a Table</option>
+                  {populateAvailableTableOptions}</select>
 
               <input type="submit" />
             </form>
@@ -213,6 +221,7 @@ class FormBox extends Component {
                 placeholder="Customer Name"
                 value={this.state.customerName}
                 onChange={this.handleCustomerName}
+                required
               />
               <input
                 type="text"
