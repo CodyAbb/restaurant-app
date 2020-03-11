@@ -1,28 +1,29 @@
-import React from 'react'
-import Booking from './Booking'
+import React from "react";
+import Booking from "./Booking";
 
-function BookingList ({bookings, handleBookingItemClick}){
-
-    const bookingItem = bookings.map(booking => {
-        return (
-          <Booking 
-            bookingValue={booking} 
-            handleBookingItemClick={handleBookingItemClick}
-            // email={booking.email}
-            // phoneNum={booking.phoneNum}
-            key={booking.id}>
-          </Booking> 
-        )
-        
-    })
+function BookingList({
+  bookings,
+  handleBookingItemClick,
+  handleBookingDeleteClick
+}) {
+  const bookingItem = bookings.map(booking => {
     return (
-      <>
+      <Booking
+        bookingValue={booking}
+        handleBookingItemClick={handleBookingItemClick}
+        handleBookingDeleteClick={handleBookingDeleteClick}
+        // email={booking.email}
+        // phoneNum={booking.phoneNum}
+        key={booking.id}
+      ></Booking>
+    );
+  });
+  return (
+    <>
       <p>Current Reservations: </p>
-        <ul>
-            {bookingItem}
-        </ul>
-      </>
-    )
+      <ul>{bookingItem}</ul>
+    </>
+  );
 }
 
 export default BookingList;

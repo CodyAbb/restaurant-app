@@ -1,29 +1,34 @@
-import React from 'react';
+import React from "react";
 
+function Booking({
+  bookingValue,
+  handleBookingItemClick,
+  handleBookingDeleteClick
+}) {
+  function handleEditBooking() {
+    handleBookingItemClick(bookingValue.id);
+  }
 
-function Booking ({bookingValue, handleBookingItemClick}){
+  function handleDeleteBooking() {
+    handleBookingDeleteClick(bookingValue.id);
+  }
 
-    function handleEditBooking(){
-        handleBookingItemClick(bookingValue.id)
-    }
-
-    return (
-    <li key={bookingValue.id}>    
-            ID: {bookingValue.id}
-            <br></br>
-            {bookingValue.time}
-            <br></br>
-            {bookingValue.date}
-            <br></br>
-            {bookingValue.numberOfPeople}
-            <br></br>
-            {bookingValue.customer.name}
-            <br></br>
-            <button onClick={handleEditBooking}>Edit</button>
-        </li>
-    
-    )
-
+  return (
+    <li key={bookingValue.id}>
+      ID: {bookingValue.id}
+      <br></br>
+      {bookingValue.time}
+      <br></br>
+      {bookingValue.date}
+      <br></br>
+      {bookingValue.numberOfPeople}
+      <br></br>
+      {bookingValue.customer.name}
+      <br></br>
+      <button onClick={handleEditBooking}>Edit</button>
+      <button onClick={handleDeleteBooking}>Delete</button>
+    </li>
+  );
 }
 
 export default Booking;
