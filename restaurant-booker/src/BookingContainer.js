@@ -25,12 +25,9 @@ function BookingContainer() {
   const [tablesNotAvailable, setTablesNotAvailable] = useState([]);
   const [dateSelected, setDateSelected] = useState(null);
   const [timeSelected, setTimeSelected] = useState(null);
-<<<<<<< HEAD
   const [displayDate, setdisplayDate] = useState("2020-03-06");
-=======
   // const [searchString, setSearchString] = useState("");
   // const [filteredSearch, setFilteredSearch] = useState("");
->>>>>>> develop
 
   useEffect(() => {
     fetch("http://localhost:8080/bookings/customerAndDesk")
@@ -130,15 +127,12 @@ function BookingContainer() {
       .catch(error => console.log(error));
   }
 
-<<<<<<< HEAD
   function handleChangeDate(event) {
     return setdisplayDate(event.target.value);
   }
-=======
   // function handleSearchInput(searchString) {
   //   setSearchString(searchString);
   // }
->>>>>>> develop
 
   return (
     <>

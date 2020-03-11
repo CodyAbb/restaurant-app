@@ -7,9 +7,10 @@ main {
   grid-template-columns: 40% 20% 40%;
   grid-template-rows: auto;
   grid-template-areas:
-    ". . ."
     "dateSelector addbooking searchbox"
     "graph graph bookinglist";
+  grid-column-gap: 1%;
+  grid-row-gap: 1%;
 }
 
 .addBookingButton {
