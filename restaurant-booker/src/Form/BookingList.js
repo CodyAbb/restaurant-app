@@ -1,12 +1,18 @@
 import React from "react";
 import Booking from "./Booking";
 
-function BookingList({ bookings, handleBookingItemClick, showModalUpdate }) {
+function BookingList({
+  bookings,
+  handleBookingItemClick,
+  handleBookingDeleteClick,
+  showModalUpdate
+}) {
   const bookingItem = bookings.map(booking => {
     return (
       <Booking
         bookingValue={booking}
         handleBookingItemClick={handleBookingItemClick}
+        handleBookingDeleteClick={handleBookingDeleteClick}
         showModalUpdate={showModalUpdate}
         // email={booking.email}
         // phoneNum={booking.phoneNum}

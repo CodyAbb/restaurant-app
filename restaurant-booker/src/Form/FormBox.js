@@ -4,7 +4,7 @@ import Axios from "axios";
 import BookingList from "./BookingList";
 import "./formbox.css";
 
-const creds = require("../config/idconfig");
+const creds = require("../config/idConfig");
 
 class FormBox extends Component {
   constructor({ bookings, bookingSlots }) {
@@ -30,16 +30,15 @@ class FormBox extends Component {
   handlePax = event => this.setState({ pax: event.target.value });
 
   handleDate = event => {
-    this.setState({ date: event.target.value });    
-    this.props.handleDateSelected(event.target.value)
-
+    this.setState({ date: event.target.value });
+    this.props.handleDateSelected(event.target.value);
   };
 
   handleTime = event => {
     console.log(event.target.value);
 
-      this.setState({ selectedTime: event.target.value })
-      this.props.handleTimeSelected(event.target.value)
+    this.setState({ selectedTime: event.target.value });
+    this.props.handleTimeSelected(event.target.value);
   };
   handleCustomerName = event =>
     this.setState({ customerName: event.target.value });
@@ -47,9 +46,9 @@ class FormBox extends Component {
     this.setState({ customerEmail: event.target.value });
   handleCustomerContactNumber = event =>
     this.setState({ customerContactNumber: event.target.value });
-    handleTable = event => {
-    this.setState({tableSelected: event.target.value})
-    }
+  handleTable = event => {
+    this.setState({ tableSelected: event.target.value });
+  };
   // handleCustomerAccessibility (event) {
   //     const target = event.target;
   //     const value = target.type === 'checkbox' ? target.checked : target.value
@@ -64,7 +63,7 @@ class FormBox extends Component {
     const pax = this.state.pax;
     const date = this.state.date;
     const time = this.state.selectedTime;
-        // call a query and the back end returns a desk to be placed in the const desk below
+    // call a query and the back end returns a desk to be placed in the const desk below
 
     const desk = `http://localhost:8080/desks/2`;
 
@@ -155,21 +154,18 @@ class FormBox extends Component {
     this.props.closePop();
   };
 
-  
-
   render() {
-
-    const populateAvailableTableOptions = this.props.tablesAvailable.map((table) => {
+    const populateAvailableTableOptions = this.props.tablesAvailable.map(
+      table => {
         if (table.pax >= this.state.pax) {
-            return (
-                <option key={table.id} value={table} >
-                  Table: {table.id} | {table.pax} pax
-                </option>
-              );
+          return (
+            <option key={table.id} value={table}>
+              Table: {table.id} | {table.pax} pax
+            </option>
+          );
         }
-        
-      });
-    
+      }
+    );
 
     const populateTimeOption = this.props.bookingSlots.map((time, index) => {
       return (
@@ -205,12 +201,13 @@ class FormBox extends Component {
                 required
               />
               <select onChange={this.handleTime} required>
-                  <option default>select a time</option>
-                  {populateTimeOption}
-                  </select>
+                <option default>select a time</option>
+                {populateTimeOption}
+              </select>
               <select onChange={this.handleTable} required>
-              <option default>select a Table</option>
-                  {populateAvailableTableOptions}</select>
+                <option default>select a Table</option>
+                {populateAvailableTableOptions}
+              </select>
 
               <input type="submit" />
             </form>

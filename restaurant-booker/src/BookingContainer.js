@@ -4,6 +4,7 @@ import BookingList from "./Form/BookingList.js";
 import Graph from "./BookingGraph/Graph.js";
 import BookingDetails from "./BookingDetails/BookingDetails.js";
 import { differenceWith, isEqual } from "lodash/fp";
+import Axios from "axios";
 
 function BookingContainer() {
   const [bookings, setBookings] = useState([]);
@@ -14,6 +15,7 @@ function BookingContainer() {
     "22:00"
   ]);
   const [selectedBooking, setSelectedBooking] = useState(null);
+  const [bookingToDelete, setBookingToDelete] = useState(1);
   const [tables, setTables] = useState([]);
   const [popShow, setPopShow] = useState(false);
   const [popShowUpdate, setPopShowUpdate] = useState(false);
@@ -74,6 +76,18 @@ function BookingContainer() {
     setSelectedBooking(selectedBooking);
   }
 
+  function handleBookingDeleteClick(bookingId) {
+    const booking = `http://localhost:8080/bookings/${bookingId}`;
+
+    JSON.stringify({ booking });
+    Axios.delete(`http://localhost:8080/bookings/${bookingId}`, {
+      booking
+    }).then(res => {
+      console.log(res);
+      window.location.reload();
+    });
+  }
+
   function showModal() {
     setPopShow(true);
   }
@@ -124,8 +138,10 @@ function BookingContainer() {
       <BookingList
         bookings={bookings}
         handleBookingItemClick={handleBookingItemClick}
+        handleBookingDeleteClick={handleBookingDeleteClick}
         showModalUpdate={showModalUpdate}
       />
+
       <Graph
         bookings={bookings}
         bookingSlots={bookingSlots}

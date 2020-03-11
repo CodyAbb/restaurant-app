@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import BookingUpdateForm from "./BookingUpdateForm.js";
+import BookingDelete from "./BookingDelete";
 
 class BookingDetails extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class BookingDetails extends Component {
           popShowUpdate={this.props.popShowUpdate}
           closePopUpdate={this.props.closePopUpdate}
         />
+        {/* <BookingDelete bookingToDelete={this.props.bookingToDelete} /> */}
 
         {/* <h4> below just fixed data. So we know what's inside</h4>
                 <section>
