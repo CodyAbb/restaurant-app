@@ -25,8 +25,8 @@ function BookingContainer() {
   const [tablesNotAvailable, setTablesNotAvailable] = useState([]);
   const [dateSelected, setDateSelected] = useState(null);
   const [timeSelected, setTimeSelected] = useState(null);
-  const [searchString, setSearchString] = useState("");
-  const [filteredSearch, setFilteredSearch] = useState("");
+  // const [searchString, setSearchString] = useState("");
+  // const [filteredSearch, setFilteredSearch] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8080/bookings/customerAndDesk")
@@ -126,9 +126,9 @@ function BookingContainer() {
       .catch(error => console.log(error));
   }
 
-  function handleSearchInput(searchString) {
-    setSearchString(searchString);
-  }
+  // function handleSearchInput(searchString) {
+  //   setSearchString(searchString);
+  // }
 
   return (
     <>
