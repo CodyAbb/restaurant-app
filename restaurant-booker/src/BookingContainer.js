@@ -5,6 +5,7 @@ import Graph from "./BookingGraph/Graph.js";
 import BookingDetails from "./BookingDetails/BookingDetails.js";
 import { differenceWith, isEqual } from "lodash/fp";
 import Axios from "axios";
+import SearchBox from "./Form/SearchBox.js";
 
 function BookingContainer() {
   const [bookings, setBookings] = useState([]);
@@ -129,6 +130,7 @@ function BookingContainer() {
       <button className="addBookingButton" onClick={showModal}>
         Add Booking
       </button>
+      <SearchBox />
       <FormBox
         bookings={bookings}
         bookingSlots={bookingSlots}
