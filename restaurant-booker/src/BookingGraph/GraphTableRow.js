@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function GraphTableRow({ bookingSlots, tables, displayDate }) {
-  const [filteredTablesByDate, setFilteredTablesByDate] = useState([]);
+  // const [filteredTablesByDate, setFilteredTablesByDate] = useState([]);
 
-  useEffect(() => {
-    let tablesFiltered = tables.filter(({ bookings }) => {
-      const dates = bookings.map(booking => booking.date);
-      return dates.includes(displayDate);
-    });
-    setFilteredTablesByDate(tablesFiltered);
-  }, [displayDate, tables]);
+  // useEffect(() => {
+  //   let tablesFiltered = tables.filter(({ bookings }) => {
+  //     const dates = bookings.map(booking => booking.date);
+  //     return dates.includes(displayDate);
+  //   });
+  //   setFilteredTablesByDate(tablesFiltered);
+  // }, [displayDate, tables]);
 
   const createTD = tables.map(table => {
     // const tablesFilteredByBookingDate = table.bookings.filter(({ date }) => {

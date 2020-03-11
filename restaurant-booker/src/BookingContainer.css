@@ -4,24 +4,35 @@ h1 {
 
 main {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 40% 20% 40%;
   grid-template-rows: auto;
   grid-template-areas:
     ". . ."
-    ". addbooking ."
+    "dateSelector addbooking searchbox"
     "graph graph bookinglist";
 }
 
 .addBookingButton {
   grid-area: addbooking;
+  max-width: fit-content;
 }
 
 .form-box {
   grid-area: formbox;
 }
 
+.search-box {
+  grid-area: searchbox;
+  justify-self: center;
+}
+
 .booking-list {
   grid-area: bookinglist;
+}
+
+.date-selector {
+  grid-area: dateSelector;
+  max-width: fit-content;
 }
 
 .booking-details {

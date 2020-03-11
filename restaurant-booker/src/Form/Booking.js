@@ -17,19 +17,14 @@ function Booking({
   }
 
   return (
-    <li key={bookingValue.id} className="booking-item">
-      ID: {bookingValue.id}
-      <br></br>
-      {bookingValue.time}
-      <br></br>
-      {bookingValue.date}
-      <br></br>
-      {bookingValue.numberOfPeople}
-      <br></br>
-      {bookingValue.customer.name}
-      <br></br>
-      <button onClick={handleEditBooking}>Edit</button>
-      <button onClick={handleDeleteBooking}>Delete</button>
+    <li
+      key={bookingValue.id}
+      className="booking-item"
+      onClick={handleEditBooking}
+    >
+      Name: {bookingValue.customer.name}
+      Date: {bookingValue.date}
+      Time: {bookingValue.time}
     </li>
   );
 }

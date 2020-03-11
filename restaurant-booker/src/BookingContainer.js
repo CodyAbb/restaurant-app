@@ -25,6 +25,7 @@ function BookingContainer() {
   const [tablesNotAvailable, setTablesNotAvailable] = useState([]);
   const [dateSelected, setDateSelected] = useState(null);
   const [timeSelected, setTimeSelected] = useState(null);
+  const [displayDate, setdisplayDate] = useState("2020-03-06");
 
   useEffect(() => {
     fetch("http://localhost:8080/bookings/customerAndDesk")
@@ -124,6 +125,10 @@ function BookingContainer() {
       .catch(error => console.log(error));
   }
 
+  function handleChangeDate(event) {
+    return setdisplayDate(event.target.value);
+  }
+
   return (
     <>
       <header>
@@ -155,7 +160,9 @@ function BookingContainer() {
             closePopUpdate={closePopUpdate}
           />
         </div>
-        <SearchBox />
+        <div className="search-box">
+          <SearchBox />
+        </div>
         <div className="booking-list">
           <BookingList
             bookings={bookings}
@@ -164,11 +171,22 @@ function BookingContainer() {
             showModalUpdate={showModalUpdate}
           />
         </div>
+        <div>
+          <label>Select a date:</label>
+          <input
+            type="date"
+            value={displayDate}
+            onChange={handleChangeDate}
+            className="date-selector"
+          />
+        </div>
+
         <div className="graph">
           <Graph
             bookings={bookings}
             bookingSlots={bookingSlots}
             tables={tables}
+            displayDate={displayDate}
           ></Graph>
         </div>
       </main>
