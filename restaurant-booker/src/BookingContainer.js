@@ -112,6 +112,16 @@ function BookingContainer() {
     setDateSelected(date);
   }
 
+  function handleNewBookingSubmit() {
+    fetch(
+      "http://localhost:8080/desks/getAllBookingsForAGivenDesk?date=06/07/2020"
+    )
+      .then(res => res.json())
+      // .then(response => console.log(response))
+      .then(result => setTables(result))
+      .catch(error => console.log(error));
+  }
+
   return (
     <>
       <p>Hello I am the booking container</p>
@@ -127,6 +137,7 @@ function BookingContainer() {
         tablesAvailable={tablesAvailable}
         handleTimeSelected={handleTimeSelected}
         handleDateSelected={handleDateSelected}
+        handleFormSubmit={handleNewBookingSubmit}
       />
       <BookingDetails
         selectedBooking={selectedBooking}
