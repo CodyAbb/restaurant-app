@@ -103,9 +103,8 @@ class FormBox extends Component {
 
         console.log(`this is new customer data from res ${res.data.id}`);
       })
-      .then(res => {
-        this.patchCustomerIdInBooking();
-      });
+      .then(() => this.patchCustomerIdInBooking())
+      .then(this.props.handleFormSubmit);
 
     // UNCOMMENT THESE TWO FUNCTIONS WHEN IMPLEMENTING EMAIL
     // let templateParams = {
@@ -124,6 +123,9 @@ class FormBox extends Component {
     //       console.log(error.text);
     //     }
     //   );
+
+    // CLOSE THE POPUP
+    this.props.closePop();
   }
 
   patchCustomerIdInBooking() {
@@ -135,11 +137,12 @@ class FormBox extends Component {
 
     console.log(`http://localhost:8080/bookings/${this.state.newBookingId}`);
 
-    Axios.patch(`http://localhost:8080/bookings/${this.state.newBookingId}`, {
-      customer: customer
-    }).then(res => {
-      console.log(`this is the res from the patch ${res}`);
-    });
+    return Axios.patch(
+      `http://localhost:8080/bookings/${this.state.newBookingId}`,
+      {
+        customer: customer
+      }
+    );
   }
 
   // getToday(){
