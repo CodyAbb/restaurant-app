@@ -4,7 +4,8 @@ import Booking from "./Booking";
 function BookingList({
   bookings,
   handleBookingItemClick,
-  handleBookingDeleteClick
+  handleBookingDeleteClick,
+  showModalUpdate
 }) {
   const bookingItem = bookings.map(booking => {
     return (
@@ -12,6 +13,7 @@ function BookingList({
         bookingValue={booking}
         handleBookingItemClick={handleBookingItemClick}
         handleBookingDeleteClick={handleBookingDeleteClick}
+        showModalUpdate={showModalUpdate}
         // email={booking.email}
         // phoneNum={booking.phoneNum}
         key={booking.id}

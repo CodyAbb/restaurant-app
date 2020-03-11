@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import Axios from "axios";
+import "../Form/formbox.css";
 
-function BookingUpdateForm({ selectedBooking, bookingSlots, tablesAvailable }) {
+function BookingUpdateForm({
+  selectedBooking,
+  bookingSlots,
+  tablesAvailable,
+  popShowUpdate,
+  closePopUpdate
+}) {
   const [pax, setPax] = useState(selectedBooking.numberOfPeople);
   const [date, setDate] = useState(selectedBooking.date);
   const [time, setTime] = useState(selectedBooking.time);
@@ -61,42 +68,42 @@ function BookingUpdateForm({ selectedBooking, bookingSlots, tablesAvailable }) {
     }).then(res => console.log(`the update res is ${res}`));
   }
 
-  //   patchCustomerIdInBooking() {
-  //     console.log(`${this.state.customer_id}`);
-  //     const customer = `http://localhost:8080/customers/${this.state.customer_id}`;
+  function handleCloseModalUpdate() {
+    closePopUpdate();
+  }
 
-  //     JSON.stringify({ customer });
-  //     console.log(JSON.stringify({ customer }));
-
-  //     console.log(`http://localhost:8080/bookings/${this.state.newBookingId}`);
-
-  //     Axios.patch(`http://localhost:8080/bookings/${this.state.newBookingId}`, {
-  //       customer: customer
-  //     }).then(res => {
-  //       console.log(`this is the res from the patch ${res}`);
-  //     });
-  //   }
+  if (!popShowUpdate) {
+    return null;
+  }
 
   return (
     <>
-      <form onSubmit={putUpdatedBooking}>
-        <label for="number of customer">Number of Customer</label>
-        <input
-          type="number"
-          placeholder="Add number of customers"
-          value={pax}
-          onChange={handlePax}
-        />
+      <div className="newBookingModal">
+        <button className="closeButton" onClick={handleCloseModalUpdate}>
+          &times;
+        </button>
+        <div className="newBookingModalContent">
+          <form onSubmit={putUpdatedBooking}>
+            <label for="number of customer">Number of Customer</label>
+            <input
+              type="number"
+              placeholder="Add number of customers"
+              value={pax}
+              onChange={handlePax}
+            />
 
-        <label for="date">Date:</label>
-        <input type="date" value={date} onChange={handleDate} />
-        <select onChange={handleTime}>{populateTimeOption}</select>
-        <select required>
-          {/* <option default>{table.id}</option> */}
-          {populateAvailableTableOptions}
-        </select>
-        <input type="submit" />
-      </form>
+            <label for="date">Date:</label>
+            <input type="date" value={date} onChange={handleDate} />
+            <select onChange={handleTime}>{populateTimeOption}</select>
+            <select required>
+              {/* <option default>{table.id}</option> */}
+              {populateAvailableTableOptions}
+            </select>
+            <input type="submit" />
+          </form>
+        </div>
+      </div>
+      <div className="modal-overlay" id="modal-overlay-update"></div>
     </>
   );
 }

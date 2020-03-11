@@ -3,9 +3,11 @@ import React from "react";
 function Booking({
   bookingValue,
   handleBookingItemClick,
-  handleBookingDeleteClick
+  handleBookingDeleteClick,
+  showModalUpdate
 }) {
   function handleEditBooking() {
+    showModalUpdate();
     handleBookingItemClick(bookingValue.id);
   }
 
