@@ -6,6 +6,7 @@ import BookingDetails from "./BookingDetails/BookingDetails.js";
 import { differenceWith, isEqual } from "lodash/fp";
 import Axios from "axios";
 import "./BookingContainer.css";
+import SearchBox from "./Form/SearchBox.js";
 
 function BookingContainer() {
   const [bookings, setBookings] = useState([]);
@@ -154,6 +155,7 @@ function BookingContainer() {
             closePopUpdate={closePopUpdate}
           />
         </div>
+        <SearchBox />
         <div className="booking-list">
           <BookingList
             bookings={bookings}
