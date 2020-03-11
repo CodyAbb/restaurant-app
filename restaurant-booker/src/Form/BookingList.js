@@ -1,5 +1,6 @@
 import React from "react";
 import Booking from "./Booking";
+import "./BookingList.css";
 
 function BookingList({
   bookings,

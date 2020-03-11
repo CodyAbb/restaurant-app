@@ -1,0 +1,37 @@
+h1 {
+  text-align: center;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    ". . ."
+    ". addbooking ."
+    "graph graph bookinglist";
+}
+
+.addBookingButton {
+  grid-area: addbooking;
+}
+
+.form-box {
+  grid-area: formbox;
+}
+
+.booking-list {
+  grid-area: bookinglist;
+}
+
+.booking-details {
+  grid-area: bookingdetail;
+}
+
+.date {
+  grid-area: date;
+}
+
+.graph {
+  grid-area: graph;
+}
