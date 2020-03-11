@@ -16,6 +16,7 @@ function BookingContainer() {
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [tables, setTables] = useState([]);
   const [popShow, setPopShow] = useState(false);
+  const [popShowUpdate, setPopShowUpdate] = useState(false);
   const [tablesAvailable, setTablesAvailable] = useState([]);
   const [tablesNotAvailable, setTablesNotAvailable] = useState([]);
   const [dateSelected, setDateSelected] = useState(null);
@@ -81,6 +82,14 @@ function BookingContainer() {
     setPopShow(false);
   }
 
+  function showModalUpdate() {
+    setPopShowUpdate(true);
+  }
+
+  function closePopUpdate() {
+    setPopShowUpdate(false);
+  }
+
   function handleTimeSelected(time) {
     setTimeSelected(time);
   }
@@ -109,10 +118,13 @@ function BookingContainer() {
         selectedBooking={selectedBooking}
         bookingSlots={bookingSlots}
         tablesAvailable={tablesAvailable}
+        popShowUpdate={popShowUpdate}
+        closePopUpdate={closePopUpdate}
       />
       <BookingList
         bookings={bookings}
         handleBookingItemClick={handleBookingItemClick}
+        showModalUpdate={showModalUpdate}
       />
       <Graph
         bookings={bookings}

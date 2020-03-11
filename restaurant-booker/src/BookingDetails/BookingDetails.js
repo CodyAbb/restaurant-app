@@ -32,6 +32,8 @@ class BookingDetails extends Component {
           selectedBooking={this.props.selectedBooking}
           bookingSlots={this.props.bookingSlots}
           tablesAvailable={this.props.tablesAvailable}
+          popShowUpdate={this.props.popShowUpdate}
+          closePopUpdate={this.props.closePopUpdate}
         />
 
         {/* <h4> below just fixed data. So we know what's inside</h4>
