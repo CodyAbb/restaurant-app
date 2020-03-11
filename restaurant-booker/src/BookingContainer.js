@@ -24,6 +24,8 @@ function BookingContainer() {
   const [tablesNotAvailable, setTablesNotAvailable] = useState([]);
   const [dateSelected, setDateSelected] = useState(null);
   const [timeSelected, setTimeSelected] = useState(null);
+  const [searchString, setSearchString] = useState("");
+  const [filteredSearch, setFilteredSearch] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8080/bookings/customerAndDesk")
@@ -123,6 +125,10 @@ function BookingContainer() {
       .catch(error => console.log(error));
   }
 
+  function handleSearchInput(searchString) {
+    setSearchString(searchString);
+  }
+
   return (
     <>
       <p>Hello I am the booking container</p>
@@ -130,7 +136,10 @@ function BookingContainer() {
       <button className="addBookingButton" onClick={showModal}>
         Add Booking
       </button>
-      <SearchBox />
+      <SearchBox
+        placeholder="search..."
+        handleSearchInput={handleSearchInput}
+      />
       <FormBox
         bookings={bookings}
         bookingSlots={bookingSlots}
@@ -153,6 +162,7 @@ function BookingContainer() {
         handleBookingItemClick={handleBookingItemClick}
         handleBookingDeleteClick={handleBookingDeleteClick}
         showModalUpdate={showModalUpdate}
+        searchString={searchString}
       />
 
       <Graph

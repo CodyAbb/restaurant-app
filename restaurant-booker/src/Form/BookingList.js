@@ -5,11 +5,30 @@ function BookingList({
   bookings,
   handleBookingItemClick,
   handleBookingDeleteClick,
-  showModalUpdate
-}) {
+  showModalUpdate,
+  searchString
+}) 
+
+
+// let filteredBookings = bookings.filter(booking => {
+//   return booking.name
+//     .toLowerCase()
+//     .includes(searchString.toLowerCase());
+// });
+
+// const bookings = props.filteredBookings.map(booking => {
+//   return (
+//     <Booking
+//       key={booking.///customer.id}
+//       name={booking.//customer.name}
+//       email={booking.email}
+//     ></Booking>
+
+
   const bookingItem = bookings.map(booking => {
     return (
       <Booking
+
         bookingValue={booking}
         handleBookingItemClick={handleBookingItemClick}
         handleBookingDeleteClick={handleBookingDeleteClick}
@@ -26,6 +45,6 @@ function BookingList({
       <ul>{bookingItem}</ul>
     </>
   );
-}
+
 
 export default BookingList;
