@@ -4,7 +4,7 @@ import Axios from "axios";
 import BookingList from "./BookingList";
 import "./formbox.css";
 
-const creds = require("../config/idConfig");
+const creds = require("../config/IdConfig");
 
 class FormBox extends Component {
   constructor({ bookings, bookingSlots }) {
