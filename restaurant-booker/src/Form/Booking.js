@@ -1,4 +1,5 @@
 import React from "react";
+import "./Booking.css";
 
 function Booking({
   bookingValue,
@@ -16,7 +17,7 @@ function Booking({
   }
 
   return (
-    <li key={bookingValue.id}>
+    <li key={bookingValue.id} className="booking-item">
       ID: {bookingValue.id}
       <br></br>
       {bookingValue.time}

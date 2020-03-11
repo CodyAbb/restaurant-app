@@ -103,8 +103,12 @@ function Graph({ bookings, bookingSlots, tables }) {
 
   return (
     <>
-      <h3>This is the Graph section</h3>
-      <input type="date" value={displayDate} onChange={handleChangeDate} />
+      <input
+        className="date"
+        type="date"
+        value={displayDate}
+        onChange={handleChangeDate}
+      />
       <table>
         <tbody>
           <tr>

@@ -5,6 +5,7 @@ import Graph from "./BookingGraph/Graph.js";
 import BookingDetails from "./BookingDetails/BookingDetails.js";
 import { differenceWith, isEqual } from "lodash/fp";
 import Axios from "axios";
+import "./BookingContainer.css";
 
 function BookingContainer() {
   const [bookings, setBookings] = useState([]);
@@ -124,41 +125,51 @@ function BookingContainer() {
 
   return (
     <>
-      <p>Hello I am the booking container</p>
-
-      <button className="addBookingButton" onClick={showModal}>
-        Add Booking
-      </button>
-      <FormBox
-        bookings={bookings}
-        bookingSlots={bookingSlots}
-        showPop={popShow}
-        closePop={closePop}
-        tablesAvailable={tablesAvailable}
-        handleTimeSelected={handleTimeSelected}
-        handleDateSelected={handleDateSelected}
-        handleFormSubmit={handleNewBookingSubmit}
-      />
-      <BookingDetails
-        selectedBooking={selectedBooking}
-        bookingSlots={bookingSlots}
-        tablesAvailable={tablesAvailable}
-        popShowUpdate={popShowUpdate}
-        closePopUpdate={closePopUpdate}
-      />
-      <BookingList
-        bookings={bookings}
-        handleBookingItemClick={handleBookingItemClick}
-        handleBookingDeleteClick={handleBookingDeleteClick}
-        showModalUpdate={showModalUpdate}
-      />
-
-      <Graph
-        bookings={bookings}
-        bookingSlots={bookingSlots}
-        tables={tables}
-      ></Graph>
-      <p></p>
+      <header>
+        <h1>Restaurant Booking Buddy</h1>
+      </header>
+      <main>
+        <button className="addBookingButton" onClick={showModal}>
+          Add Booking
+        </button>
+        <div className="form-box">
+          <FormBox
+            bookings={bookings}
+            bookingSlots={bookingSlots}
+            showPop={popShow}
+            closePop={closePop}
+            tablesAvailable={tablesAvailable}
+            handleTimeSelected={handleTimeSelected}
+            handleDateSelected={handleDateSelected}
+            handleFormSubmit={handleNewBookingSubmit}
+            class="form-box"
+          />
+        </div>
+        <div className="booking-details">
+          <BookingDetails
+            selectedBooking={selectedBooking}
+            bookingSlots={bookingSlots}
+            tablesAvailable={tablesAvailable}
+            popShowUpdate={popShowUpdate}
+            closePopUpdate={closePopUpdate}
+          />
+        </div>
+        <div className="booking-list">
+          <BookingList
+            bookings={bookings}
+            handleBookingItemClick={handleBookingItemClick}
+            handleBookingDeleteClick={handleBookingDeleteClick}
+            showModalUpdate={showModalUpdate}
+          />
+        </div>
+        <div className="graph">
+          <Graph
+            bookings={bookings}
+            bookingSlots={bookingSlots}
+            tables={tables}
+          ></Graph>
+        </div>
+      </main>
     </>
   );
 }
