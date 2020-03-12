@@ -94,6 +94,7 @@ function BookingContainer() {
   function handleBookingDeleteClick(bookingId) {
     const booking = `http://localhost:8080/bookings/${bookingId}`;
 
+    // console.log("booking link to be deleted", booking);
     JSON.stringify({ booking });
     Axios.delete(`http://localhost:8080/bookings/${bookingId}`, {
       booking
@@ -178,6 +179,7 @@ function BookingContainer() {
             tablesAvailable={tablesAvailable}
             popShowUpdate={popShowUpdate}
             closePopUpdate={closePopUpdate}
+            handleBookingDeleteClick={handleBookingDeleteClick}
           />
         </div>
         <div className="search-box">
@@ -188,7 +190,6 @@ function BookingContainer() {
             bookings={bookings}
             searchedBookings={searchedBookings}
             handleBookingItemClick={handleBookingItemClick}
-            handleBookingDeleteClick={handleBookingDeleteClick}
             showModalUpdate={showModalUpdate}
           />
         </div>

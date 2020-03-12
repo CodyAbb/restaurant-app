@@ -13,10 +13,6 @@ function Booking({
     handleBookingItemClick(bookingValue.id);
   }
 
-  function handleDeleteBooking() {
-    handleBookingDeleteClick(bookingValue.id);
-  }
-
   return (
     <li
       key={bookingValue.id}

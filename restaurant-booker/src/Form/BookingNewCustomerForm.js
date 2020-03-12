@@ -55,7 +55,7 @@ function BookingNewCustomerForm({
       <input name="customerAccessibility" type="checkbox" checked={this.state.customerAccessibility} onChange={this.handleCustomerAccessibility}/>
       </> */}
 
-      <input type="submit" />
+      {/* <input type="submit" /> */}
     </form>
   );
 }

@@ -20,12 +20,16 @@ class FormBox extends Component {
       customerContactNumber: "",
       newBookingId: null,
       customer_id: null,
-      tableSelectedId: null
+      tableSelectedId: null,
+      feedback: ""
 
       // customerAccessibility: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCustomerSubmit = this.handleCustomerSubmit.bind(this);
+    this.handleNewBookingAndCustomer = this.handleNewBookingAndCustomer.bind(
+      this
+    );
   }
 
   handlePax = event => {
@@ -72,19 +76,20 @@ class FormBox extends Component {
 
     JSON.stringify({ numberOfPeople, date, time, desk });
 
-    Axios.post(`http://localhost:8080/bookings`, {
+    return Axios.post(`http://localhost:8080/bookings`, {
       numberOfPeople,
       date,
       time,
       desk
-    }).then(res => {
-      console.log(res);
-      this.setState({ newBookingId: res.data.id });
     });
+    // .then(res => {
+    //   console.log("logging the handle submit parent", res);
+    //   this.setState({ newBookingId: res.data.id });
+    // });
   }
 
-  handleCustomerSubmit(event) {
-    event.preventDefault();
+  handleCustomerSubmit(bookingId) {
+    // event.preventDefault();
 
     const date = this.state.date;
     const time = this.state.selectedTime;
@@ -100,10 +105,10 @@ class FormBox extends Component {
       emailAddress,
       contactNumber
     })
-      .then(res => {
-        this.setState({ customer_id: res.data.id });
-      })
-      .then(() => this.patchCustomerIdInBooking())
+      // .then(res => {
+      //   this.setState({ customer_id: res.data.id });
+      // })
+      .then(res => this.patchCustomerIdInBooking(bookingId, res.data.id))
       .then(this.props.handleFormSubmit);
 
     // UNCOMMENT THESE TWO FUNCTIONS WHEN IMPLEMENTING EMAIL
@@ -128,21 +133,27 @@ class FormBox extends Component {
     this.props.closePop();
   }
 
-  patchCustomerIdInBooking() {
-    console.log(`${this.state.customer_id}`);
-    const customer = `http://localhost:8080/customers/${this.state.customer_id}`;
+  patchCustomerIdInBooking(bookingId, customerId) {
+    // console.log(`${this.state.customer_id}`);
+    const customer = `http://localhost:8080/customers/${customerId}`;
 
     JSON.stringify({ customer });
     console.log(JSON.stringify({ customer }));
 
-    console.log(`http://localhost:8080/bookings/${this.state.newBookingId}`);
+    console.log(`http://localhost:8080/bookings/${bookingId}`);
 
-    return Axios.patch(
-      `http://localhost:8080/bookings/${this.state.newBookingId}`,
-      {
-        customer: customer
-      }
-    );
+    return Axios.patch(`http://localhost:8080/bookings/${bookingId}`, {
+      customer: customer
+    });
+  }
+
+  handleNewBookingAndCustomer() {
+    console.log("am I clicked? ");
+
+    this.handleSubmit()
+      .then(bookingRes => this.handleCustomerSubmit(bookingRes.data.id))
+      .then(res => console.log(res))
+      .catch(console.error);
   }
 
   // getToday(){
@@ -176,13 +187,18 @@ class FormBox extends Component {
               bookingSlots={this.props.bookingSlots}
               handleTable={this.handleTable}
               tablesAvailable={this.props.tablesAvailable}
+              handleBookingPartSubmitted={this.handleBookingPartSubmitted}
             />
+            <p>{this.state.feedback}</p>
             <BookingNewCustomerForm
               handleCustomerSubmit={this.handleCustomerSubmit}
               handleCustomerName={this.handleCustomerName}
               handleCustomerEmail={this.handleCustomerEmail}
               handleCustomerContactNumber={this.handleCustomerContactNumber}
             />
+            <button onClick={this.handleNewBookingAndCustomer}>
+              "Click me"
+            </button>
           </div>
         </div>
         <div className="modal-overlay" id="modal-overlay"></div>
