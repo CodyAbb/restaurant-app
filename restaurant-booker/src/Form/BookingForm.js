@@ -8,7 +8,8 @@ function BookingForm({
   handleTime,
   handleSubmit,
   tablesAvailable,
-  handleTable
+  handleTable,
+  handleBookingPartSubmitted
 }) {
   const [numberOfPeople, setNumberOfPeople] = useState(1);
   const [date, setDate] = useState("");
@@ -35,15 +36,6 @@ function BookingForm({
     handleTable(event);
   }
 
-  function handleSubmitSelection(event) {
-    if (date && time && numberOfPeople && tableSelected) {
-      event.preventDefault();
-      console.log("loggin the handlesubmit child");
-
-      handleSubmit(event);
-    }
-  }
-
   const populateTimeOption = bookingSlots.map((time, index) => {
     return (
       <option key={index} value={time}>
@@ -66,10 +58,10 @@ function BookingForm({
     return null;
   } else {
     return (
-      <form onChange={handleSubmitSelection}>
+      <form>
         <input
           type="number"
-          // placeholder="Add number of customers"
+          placeholder="Add number of customers"
           value={numberOfPeople}
           onChange={handlePaxSelection}
           min="1"
@@ -89,8 +81,6 @@ function BookingForm({
           <option default>select a Table</option>
           {populateAvailableTableOptions}
         </select>
-
-        {/* <input type="submit" /> */}
       </form>
     );
   }

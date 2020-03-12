@@ -11,8 +11,6 @@ function BookingList({
 }) {
   let bookingItems;
 
-  debugger;
-
   if (searchedBookings.length == 0) {
     bookingItems = bookings.map(booking => {
       return (
