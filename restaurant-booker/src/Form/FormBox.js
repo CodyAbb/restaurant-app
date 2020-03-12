@@ -3,9 +3,10 @@ import Axios from "axios";
 // import emailjs from "emailjs-com";
 import BookingList from "./BookingList";
 import "./formbox.css";
-import BookingForm from "./BookingForm"
+import BookingForm from "./BookingForm";
+import BookingNewCustomerForm from "./BookingNewCustomerForm.js";
 
-const creds = require("../config/Idconfig.js");
+const creds = require("../config/IdConfig.js");
 
 class FormBox extends Component {
   constructor(props) {
@@ -25,8 +26,6 @@ class FormBox extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCustomerSubmit = this.handleCustomerSubmit.bind(this);
-
-
   }
 
   handlePax = event => {
@@ -63,7 +62,6 @@ class FormBox extends Component {
   // }
 
   handleSubmit(event) {
-
     const numberOfPeople = this.state.numberOfPeople;
     const date = this.state.date;
     const time = this.state.selectedTime;
@@ -160,7 +158,6 @@ class FormBox extends Component {
   };
 
   render() {
-
     if (!this.props.showPop) {
       return null;
     }
@@ -171,43 +168,21 @@ class FormBox extends Component {
             &times;
           </button>
           <div className="newBookingModalContent">
-            <BookingForm 
-            handleSubmit={this.handleSubmit} 
-            handlePax={this.handlePax} 
-            handleDate={this.handleDate} 
-            handleTime={this.handleTime} 
-            bookingSlots={this.props.bookingSlots} 
-            handleTable={this.handleTable}
-            tablesAvailable={this.props.tablesAvailable}
+            <BookingForm
+              handleSubmit={this.handleSubmit}
+              handlePax={this.handlePax}
+              handleDate={this.handleDate}
+              handleTime={this.handleTime}
+              bookingSlots={this.props.bookingSlots}
+              handleTable={this.handleTable}
+              tablesAvailable={this.props.tablesAvailable}
             />
-
-            <form onSubmit={this.handleCustomerSubmit}>
-              <input
-                type="text"
-                placeholder="Customer Name"
-                value={this.state.customerName}
-                onChange={this.handleCustomerName}
-                required
-              />
-              <input
-                type="text"
-                placeholder="Email Address"
-                value={this.state.customerEmail}
-                onChange={this.handleCustomerEmail}
-              />
-              <input
-                type="text"
-                placeholder="Contact Number"
-                value={this.state.customerContactNumber}
-                onChange={this.handleCustomerContactNumber}
-              />
-              {/* <>
-                    <p>Accessibility Required: </p>
-                    <input name="customerAccessibility" type="checkbox" checked={this.state.customerAccessibility} onChange={this.handleCustomerAccessibility}/>
-                    </> */}
-
-              <input type="submit" />
-            </form>
+            <BookingNewCustomerForm
+              handleCustomerSubmit={this.handleCustomerSubmit}
+              handleCustomerName={this.handleCustomerName}
+              handleCustomerEmail={this.handleCustomerEmail}
+              handleCustomerContactNumber={this.handleCustomerContactNumber}
+            />
           </div>
         </div>
         <div className="modal-overlay" id="modal-overlay"></div>
