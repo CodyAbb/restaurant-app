@@ -8,7 +8,8 @@ function BookingUpdateForm({
   tablesAvailable,
   popShowUpdate,
   closePopUpdate,
-  handleBookingDeleteClick
+  handleBookingDeleteClick,
+  fetchBookings
 }) {
   const [pax, setPax] = useState(selectedBooking.numberOfPeople);
   const [date, setDate] = useState(selectedBooking.date);
@@ -60,13 +61,14 @@ function BookingUpdateForm({
     const desk = `http://localhost:8080/desks/${selectedBooking.desk.id}`;
     const numberOfPeople = pax;
     JSON.stringify({ time, date, numberOfPeople, customer, desk });
-    Axios.put(`http://localhost:8080/bookings/${selectedBooking.id}`, {
+    return Axios.put(`http://localhost:8080/bookings/${selectedBooking.id}`, {
       time,
       date,
       numberOfPeople,
       customer,
       desk
-    }).then(res => console.log(`the update res is ${res}`));
+    }).then(() => fetchBookings());
+    // console.log("fetch booking function in components");
   }
 
   function handleCloseModalUpdate() {

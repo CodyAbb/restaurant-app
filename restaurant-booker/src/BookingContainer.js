@@ -31,12 +31,19 @@ function BookingContainer() {
   const [searchedBookings, setSearchBookings] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/bookings/customerAndDesk")
-      .then(res => res.json())
-      // .then(response => console.log(response))
-      .then(result => setBookings(result))
-      .catch(error => console.log(error));
+    fetchBookings();
   }, []);
+
+  function fetchBookings() {
+    console.log("fetch booking function");
+    return (
+      fetch("http://localhost:8080/bookings/customerAndDesk")
+        .then(res => res.json())
+        // .then(response => console.log(response))
+        .then(result => setBookings(result))
+        .catch(error => console.log(error))
+    );
+  }
 
   useEffect(() => {
     fetch(
@@ -138,7 +145,8 @@ function BookingContainer() {
     )
       .then(res => res.json())
       .then(result => setTables(result))
-      .catch(error => console.log(error));
+      .then(() => fetchBookings());
+    // .catch(error => console.log(error));
   }
 
   function handleChangeDate(event) {
@@ -180,6 +188,7 @@ function BookingContainer() {
             popShowUpdate={popShowUpdate}
             closePopUpdate={closePopUpdate}
             handleBookingDeleteClick={handleBookingDeleteClick}
+            fetchBookings={fetchBookings}
           />
         </div>
         <div className="search-box">

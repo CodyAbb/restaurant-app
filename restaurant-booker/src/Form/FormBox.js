@@ -115,6 +115,7 @@ class FormBox extends Component {
     // let templateParams = {
     //   emailAddress: emailAddress,
     //   name: name,
+    //   numberOfPeople: numberOfPeople,
     //   time: time,
     //   date: date
     // };
@@ -148,11 +149,10 @@ class FormBox extends Component {
   }
 
   handleNewBookingAndCustomer() {
-    console.log("am I clicked? ");
-
     this.handleSubmit()
       .then(bookingRes => this.handleCustomerSubmit(bookingRes.data.id))
-      .then(res => console.log(res))
+      // .then(res => console.log(res))
+      .then(() => this.props.handleFormSubmit())
       .catch(console.error);
   }
 
