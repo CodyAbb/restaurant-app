@@ -3,12 +3,13 @@ import Axios from "axios";
 // import emailjs from "emailjs-com";
 import BookingList from "./BookingList";
 import "./formbox.css";
+import BookingForm from "./BookingForm"
 
 const creds = require("../config/IdConfig.js");
 
 class FormBox extends Component {
-  constructor({ bookings, bookingSlots }) {
-    super({ bookings, bookingSlots });
+  constructor(props) {
+    super(props);
     this.state = {
       numberOfPeople: 1,
       date: "",
@@ -24,6 +25,8 @@ class FormBox extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCustomerSubmit = this.handleCustomerSubmit.bind(this);
+
+
   }
 
   handlePax = event => {
@@ -60,7 +63,6 @@ class FormBox extends Component {
   // }
 
   handleSubmit(event) {
-    event.preventDefault();
 
     const numberOfPeople = this.state.numberOfPeople;
     const date = this.state.date;
@@ -158,25 +160,6 @@ class FormBox extends Component {
   };
 
   render() {
-    const populateAvailableTableOptions = this.props.tablesAvailable.map(
-      table => {
-        if (table.pax >= this.state.numberOfPeople) {
-          return (
-            <option key={table.id} value={table.id}>
-              Table: {table.id} | {table.pax} pax
-            </option>
-          );
-        }
-      }
-    );
-
-    const populateTimeOption = this.props.bookingSlots.map((time, index) => {
-      return (
-        <option key={index} value={time}>
-          {time}
-        </option>
-      );
-    });
 
     if (!this.props.showPop) {
       return null;
@@ -188,32 +171,15 @@ class FormBox extends Component {
             &times;
           </button>
           <div className="newBookingModalContent">
-            <form onSubmit={this.handleSubmit}>
-              <input
-                type="number"
-                // placeholder="Add number of customers"
-                value={this.state.numberOfPeople}
-                onChange={this.handlePax}
-                min="1"
-                required
-              />
-              <input
-                type="date"
-                value={this.state.date}
-                onChange={this.handleDate}
-                required
-              />
-              <select onChange={this.handleTime} required>
-                <option default>select a time</option>
-                {populateTimeOption}
-              </select>
-              <select onChange={this.handleTable} required>
-                <option default>select a Table</option>
-                {populateAvailableTableOptions}
-              </select>
-
-              <input type="submit" />
-            </form>
+            <BookingForm 
+            handleSubmit={this.handleSubmit} 
+            handlePax={this.handlePax} 
+            handleDate={this.handleDate} 
+            handleTime={this.handleTime} 
+            bookingSlots={this.props.bookingSlots} 
+            handleTable={this.handleTable}
+            tablesAvailable={this.props.tablesAvailable}
+            />
 
             <form onSubmit={this.handleCustomerSubmit}>
               <input
