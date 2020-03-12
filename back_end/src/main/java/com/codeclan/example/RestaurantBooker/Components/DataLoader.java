@@ -49,24 +49,6 @@ public class DataLoader implements ApplicationRunner {
         Desk desk6 = new Desk(4, 6, false);
         deskRepository.save(desk6);
 
-        Desk desk7 = new Desk(4, 7, false);
-        deskRepository.save(desk7);
-
-        Desk desk8 = new Desk(4, 8, false);
-        deskRepository.save(desk8);
-
-        Desk desk9 = new Desk(4, 9, false);
-        deskRepository.save(desk9);
-
-        Desk desk10 = new Desk(4, 10, false);
-        deskRepository.save(desk10);
-
-        Desk desk12 = new Desk(4, 11, false);
-        deskRepository.save(desk12);
-
-        Desk desk13 = new Desk(6, 12, false);
-        deskRepository.save(desk13);
-
         Customer customer1 = new Customer("Stephen", "stephen@yahoo.co.uk", "074625242348");
         customerRepository.save(customer1);
 
@@ -79,10 +61,7 @@ public class DataLoader implements ApplicationRunner {
         Booking booking2 = new Booking("12:30", "2020-03-07", 4, customer1, desk1);
         bookingRepository.save(booking2);
 
-        Booking booking3 = new Booking("19:00", "2020-03-06", 6, customer2, desk13);
-        bookingRepository.save(booking3);
-
-        Booking booking4 = new Booking("23:50", "2015-03-07", 6, customer1, desk5);
+        Booking booking4 = new Booking("23:50", "2020-03-07", 6, customer1, desk5);
         bookingRepository.save(booking4);
 
     }
