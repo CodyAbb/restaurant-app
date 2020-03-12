@@ -30,9 +30,6 @@ class FormBox extends Component {
     this.handleNewBookingAndCustomer = this.handleNewBookingAndCustomer.bind(
       this
     );
-    this.handleBookingPartSubmitted = this.handleBookingPartSubmitted.bind(
-      this
-    );
   }
 
   handlePax = event => {
@@ -67,12 +64,6 @@ class FormBox extends Component {
 
   //     this.setState({customerAccessibility: value})
   // }
-
-  handleBookingPartSubmitted(result) {
-    this.setState({ feedback: "yes!" });
-    console.log("parent form check status", result);
-    this.handleSubmit();
-  }
 
   handleSubmit(event) {
     const numberOfPeople = this.state.numberOfPeople;

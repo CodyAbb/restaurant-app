@@ -35,6 +35,7 @@ class BookingDetails extends Component {
           tablesAvailable={this.props.tablesAvailable}
           popShowUpdate={this.props.popShowUpdate}
           closePopUpdate={this.props.closePopUpdate}
+          handleBookingDeleteClick={this.props.handleBookingDeleteClick}
         />
         {/* <BookingDelete bookingToDelete={this.props.bookingToDelete} /> */}
 

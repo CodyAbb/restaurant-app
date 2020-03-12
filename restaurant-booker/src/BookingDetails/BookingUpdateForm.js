@@ -7,7 +7,8 @@ function BookingUpdateForm({
   bookingSlots,
   tablesAvailable,
   popShowUpdate,
-  closePopUpdate
+  closePopUpdate,
+  handleBookingDeleteClick
 }) {
   const [pax, setPax] = useState(selectedBooking.numberOfPeople);
   const [date, setDate] = useState(selectedBooking.date);
@@ -72,6 +73,10 @@ function BookingUpdateForm({
     closePopUpdate();
   }
 
+  function handleDeleteBooking() {
+    handleBookingDeleteClick(selectedBooking.id);
+  }
+
   if (!popShowUpdate) {
     return null;
   }
@@ -101,6 +106,7 @@ function BookingUpdateForm({
             </select>
             <input type="submit" />
           </form>
+          <button onClick={handleDeleteBooking}>Delete Booking</button>
         </div>
       </div>
       <div className="modal-overlay" id="modal-overlay-update"></div>

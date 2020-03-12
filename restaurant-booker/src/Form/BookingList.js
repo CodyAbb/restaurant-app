@@ -17,7 +17,6 @@ function BookingList({
         <Booking
           bookingValue={booking}
           handleBookingItemClick={handleBookingItemClick}
-          handleBookingDeleteClick={handleBookingDeleteClick}
           showModalUpdate={showModalUpdate}
           // email={booking.email}
           // phoneNum={booking.phoneNum}
@@ -32,7 +31,6 @@ function BookingList({
         <Booking
           bookingValue={booking}
           handleBookingItemClick={handleBookingItemClick}
-          handleBookingDeleteClick={handleBookingDeleteClick}
           showModalUpdate={showModalUpdate}
           // email={booking.email}
           // phoneNum={booking.phoneNum}
@@ -48,7 +46,6 @@ function BookingList({
         <Booking
           bookingValue={booking}
           handleBookingItemClick={handleBookingItemClick}
-          handleBookingDeleteClick={handleBookingDeleteClick}
           showModalUpdate={showModalUpdate}
           // email={booking.email}
           // phoneNum={booking.phoneNum}
