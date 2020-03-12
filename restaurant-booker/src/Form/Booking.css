@@ -7,3 +7,7 @@ li {
 li:hover {
   background-color: grey;
 }
+
+label {
+  font-weight: 600;
+}

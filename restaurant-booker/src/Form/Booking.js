@@ -1,5 +1,6 @@
 import React from "react";
 import "./Booking.css";
+import BookingDetails from "../BookingDetails/BookingDetails";
 
 function Booking({
   bookingValue,
@@ -22,9 +23,13 @@ function Booking({
       className="booking-item"
       onClick={handleEditBooking}
     >
-      Name: {bookingValue.customer.name}
-      Date: {bookingValue.date}
-      Time: {bookingValue.time}
+      <label>Name: </label>
+      {bookingValue.customer.name}
+      <br></br>
+      <label>Date: </label>
+      {bookingValue.date}
+      <br></br>
+      <label>Time: </label> {bookingValue.time}
     </li>
   );
 }

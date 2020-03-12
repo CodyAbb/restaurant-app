@@ -29,6 +29,7 @@ main {
 
 .booking-list {
   grid-area: bookinglist;
+  font-weight: 400;
 }
 
 .date-selector {
