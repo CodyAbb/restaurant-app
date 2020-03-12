@@ -35,7 +35,9 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  padding: 20px 100px 20px 20px;
+  padding-top: 50px;
+
+  padding-right: 20px;
 }
 
 .modal-overlay {
@@ -46,10 +48,13 @@
        high on the scale in that system.
     */
   z-index: 1000;
-
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 50%;
+}
+
+.newBookingModal .button {
+  background-color: green;
 }

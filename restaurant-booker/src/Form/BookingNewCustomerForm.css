@@ -1,0 +1,19 @@
+.new-customer-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1f;
+  grid-gap: 0.5em;
+}
+
+.new-customer-table input {
+  text-align: left;
+  margin-right: 80px;
+}
+
+.new-customer-table select {
+  width: 74%;
+}
+
+.new-customer-table label {
+  text-align: right;
+}

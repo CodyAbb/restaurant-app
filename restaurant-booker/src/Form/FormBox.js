@@ -174,7 +174,7 @@ class FormBox extends Component {
     }
     return (
       <>
-        <div className="newBookingModal">
+        <div className="newBookingModal" style={{ textAlign: "center" }}>
           <button className="closeButton" onClick={this.handleCloseModal}>
             &times;
           </button>
@@ -196,8 +196,13 @@ class FormBox extends Component {
               handleCustomerEmail={this.handleCustomerEmail}
               handleCustomerContactNumber={this.handleCustomerContactNumber}
             />
-            <button onClick={this.handleNewBookingAndCustomer}>
-              "Click me"
+            <br></br>
+            <button
+              onClick={this.handleNewBookingAndCustomer}
+              style={{ textAlign: "center" }}
+              style={{ backgroundColor: "lightblue" }}
+            >
+              Save Booking
             </button>
           </div>
         </div>

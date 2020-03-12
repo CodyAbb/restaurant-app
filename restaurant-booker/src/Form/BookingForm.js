@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Booking from "./Booking";
+import "./BookingNewCustomerForm.css";
 
 function BookingForm({
   bookingSlots,
@@ -58,7 +59,8 @@ function BookingForm({
     return null;
   } else {
     return (
-      <form>
+      <form className="new-customer-table">
+        <label> Covers: </label>
         <input
           type="number"
           placeholder="Add number of customers"
@@ -67,16 +69,19 @@ function BookingForm({
           min="1"
           required
         />
+        <label> Date: </label>
         <input
           type="date"
           value={date}
           onChange={handleDateSelection}
           required
         />
+        <label> Time: </label>
         <select onChange={handleTimeSelection} required>
           <option default>select a time</option>
           {populateTimeOption}
         </select>
+        <label> Table: </label>
         <select onChange={handleTableSelection} required>
           <option default>select a Table</option>
           {populateAvailableTableOptions}

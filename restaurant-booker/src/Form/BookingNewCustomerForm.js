@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./BookingNewCustomerForm.css";
 
 function BookingNewCustomerForm({
   handleCustomerSubmit,
@@ -30,7 +31,12 @@ function BookingNewCustomerForm({
   }
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form
+      onSubmit={handleFormSubmit}
+      style={{ textAlign: "center" }}
+      className="new-customer-table"
+    >
+      <label> Name: </label>
       <input
         type="text"
         placeholder="Customer Name"
@@ -38,12 +44,16 @@ function BookingNewCustomerForm({
         onChange={handleCustomerNameSelection}
         required
       />
+
+      <label>Email: </label>
       <input
         type="text"
         placeholder="Email Address"
         value={customerEmail}
         onChange={handleCustomerEmailSelection}
       />
+
+      <label>Contact Number: </label>
       <input
         type="text"
         placeholder="Contact Number"
@@ -54,7 +64,6 @@ function BookingNewCustomerForm({
       <p>Accessibility Required: </p>
       <input name="customerAccessibility" type="checkbox" checked={this.state.customerAccessibility} onChange={this.handleCustomerAccessibility}/>
       </> */}
-
       {/* <input type="submit" /> */}
     </form>
   );
