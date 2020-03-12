@@ -1,0 +1,49 @@
+h1 {
+  text-align: center;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 40% 20% 40%;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "dateSelector addbooking searchbox"
+    "graph graph bookinglist";
+  grid-column-gap: 1%;
+  grid-row-gap: 1%;
+}
+
+.addBookingButton {
+  grid-area: addbooking;
+  max-width: fit-content;
+}
+
+.form-box {
+  grid-area: formbox;
+}
+
+.search-box {
+  grid-area: searchbox;
+  justify-self: center;
+}
+
+.booking-list {
+  grid-area: bookinglist;
+}
+
+.date-selector {
+  grid-area: dateSelector;
+  max-width: fit-content;
+}
+
+.booking-details {
+  grid-area: bookingdetail;
+}
+
+.date {
+  grid-area: date;
+}
+
+.graph {
+  grid-area: graph;
+}

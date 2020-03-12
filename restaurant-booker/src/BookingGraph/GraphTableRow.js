@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 function GraphTableRow({ bookingSlots, tables, displayDate }) {
-  const [filteredTablesByDate, setFilteredTablesByDate] = useState([]);
+  // const [filteredTablesByDate, setFilteredTablesByDate] = useState([]);
 
-  useEffect(() => {
-    let tablesFiltered = tables.filter(({ bookings }) => {
-      const dates = bookings.map(booking => booking.date);
-      return dates.includes(displayDate);
-    });
-    setFilteredTablesByDate(tablesFiltered);
-  }, [displayDate, tables]);
+  // useEffect(() => {
+  //   let tablesFiltered = tables.filter(({ bookings }) => {
+  //     const dates = bookings.map(booking => booking.date);
+  //     return dates.includes(displayDate);
+  //   });
+  //   setFilteredTablesByDate(tablesFiltered);
+  // }, [displayDate, tables]);
 
   const createTD = tables.map(table => {
     // const tablesFilteredByBookingDate = table.bookings.filter(({ date }) => {
@@ -27,23 +27,24 @@ function GraphTableRow({ bookingSlots, tables, displayDate }) {
           if (table.bookings.length === 0) {
             return <td>No Bookings for this time</td>;
           } else {
-            let findTable = table.bookings.find(({ time, date }) => {
+            let findBookingPerTable = table.bookings.find(({ time, date }) => {
               return (
                 bookingSlot >= time &&
                 bookingSlot <= getEndTime(time) &&
                 date === displayDate
               );
             });
-            if (findTable) {
-              let findCustomer = findTable.customer
-                ? findTable.customer.name
+            if (findBookingPerTable) {
+              let findCustomer = findBookingPerTable.customer
+                ? findBookingPerTable.customer.name
                 : "";
+
               return (
                 <td className="entry">
                   <a href="">
                     {" "}
                     Customer: {findCustomer} <br /> People:{" "}
-                    {findTable.numberOfPeople}
+                    {findBookingPerTable.numberOfPeople}
                   </a>
                 </td>
               );

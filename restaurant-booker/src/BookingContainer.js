@@ -5,6 +5,8 @@ import Graph from "./BookingGraph/Graph.js";
 import BookingDetails from "./BookingDetails/BookingDetails.js";
 import { differenceWith, isEqual } from "lodash/fp";
 import Axios from "axios";
+import "./BookingContainer.css";
+import SearchBox from "./Form/SearchBox.js";
 
 function BookingContainer() {
   const [bookings, setBookings] = useState([]);
@@ -23,6 +25,10 @@ function BookingContainer() {
   const [tablesNotAvailable, setTablesNotAvailable] = useState([]);
   const [dateSelected, setDateSelected] = useState(null);
   const [timeSelected, setTimeSelected] = useState(null);
+  const [displayDate, setdisplayDate] = useState("2020-03-06");
+  const [paxSelected, setPaxSelected] = useState(null);
+  // const [searchString, setSearchString] = useState("");
+  // const [filteredSearch, setFilteredSearch] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8080/bookings/customerAndDesk")
@@ -57,7 +63,7 @@ function BookingContainer() {
           tables,
           unavailableTables
         );
-        // console.log(availableTables);
+        console.log(availableTables);
 
         setTablesAvailable(availableTables);
       })
@@ -112,53 +118,88 @@ function BookingContainer() {
     setDateSelected(date);
   }
 
+  function handlePaxSelected(pax) {
+    setPaxSelected(pax);
+  }
+
   function handleNewBookingSubmit() {
     fetch(
       "http://localhost:8080/desks/getAllBookingsForAGivenDesk?date=06/07/2020"
     )
       .then(res => res.json())
-      // .then(response => console.log(response))
       .then(result => setTables(result))
       .catch(error => console.log(error));
   }
 
+  function handleChangeDate(event) {
+    return setdisplayDate(event.target.value);
+  }
+  // function handleSearchInput(searchString) {
+  //   setSearchString(searchString);
+  // }
+
   return (
     <>
-      <p>Hello I am the booking container</p>
+      <header>
+        <h1>Restaurant Booking Buddy</h1>
+      </header>
+      <main>
+        <button className="addBookingButton" onClick={showModal}>
+          Add Booking
+        </button>
+        <div className="form-box">
+          <FormBox
+            bookings={bookings}
+            bookingSlots={bookingSlots}
+            showPop={popShow}
+            closePop={closePop}
+            tablesAvailable={tablesAvailable}
+            handleTimeSelected={handleTimeSelected}
+            handleDateSelected={handleDateSelected}
+            handlePaxSelected={handlePaxSelected}
+            handleFormSubmit={handleNewBookingSubmit}
+            class="form-box"
+          />
+        </div>
+        <div className="booking-details">
+          <BookingDetails
+            selectedBooking={selectedBooking}
+            bookingSlots={bookingSlots}
+            tablesAvailable={tablesAvailable}
+            popShowUpdate={popShowUpdate}
+            closePopUpdate={closePopUpdate}
+          />
+        </div>
+        <div className="search-box">
+          <SearchBox />
+        </div>
+        <div className="booking-list">
+          <BookingList
+            bookings={bookings}
+            handleBookingItemClick={handleBookingItemClick}
+            handleBookingDeleteClick={handleBookingDeleteClick}
+            showModalUpdate={showModalUpdate}
+          />
+        </div>
+        <div>
+          <label>Select a date:</label>
+          <input
+            type="date"
+            value={displayDate}
+            onChange={handleChangeDate}
+            className="date-selector"
+          />
+        </div>
 
-      <button className="addBookingButton" onClick={showModal}>
-        Add Booking
-      </button>
-      <FormBox
-        bookings={bookings}
-        bookingSlots={bookingSlots}
-        showPop={popShow}
-        closePop={closePop}
-        tablesAvailable={tablesAvailable}
-        handleTimeSelected={handleTimeSelected}
-        handleDateSelected={handleDateSelected}
-        handleFormSubmit={handleNewBookingSubmit}
-      />
-      <BookingDetails
-        selectedBooking={selectedBooking}
-        bookingSlots={bookingSlots}
-        tablesAvailable={tablesAvailable}
-        popShowUpdate={popShowUpdate}
-        closePopUpdate={closePopUpdate}
-      />
-      <BookingList
-        bookings={bookings}
-        handleBookingItemClick={handleBookingItemClick}
-        handleBookingDeleteClick={handleBookingDeleteClick}
-        showModalUpdate={showModalUpdate}
-      />
-
-      <Graph
-        bookings={bookings}
-        bookingSlots={bookingSlots}
-        tables={tables}
-      ></Graph>
-      <p></p>
+        <div className="graph">
+          <Graph
+            bookings={bookings}
+            bookingSlots={bookingSlots}
+            tables={tables}
+            displayDate={displayDate}
+          ></Graph>
+        </div>
+      </main>
     </>
   );
 }
