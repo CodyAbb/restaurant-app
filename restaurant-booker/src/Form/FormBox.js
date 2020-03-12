@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Axios from "axios";
-// import emailjs from "emailjs-com";
+import emailjs from "emailjs-com";
 import BookingList from "./BookingList";
 import "./formbox.css";
 import BookingForm from "./BookingForm";
@@ -93,7 +93,7 @@ class FormBox extends Component {
 
     const date = this.state.date;
     const time = this.state.selectedTime;
-
+    const numberOfPeople = this.state.numberOfPeople;
     const name = this.state.customerName;
     const emailAddress = this.state.customerEmail;
     const contactNumber = this.state.customerContactNumber;
