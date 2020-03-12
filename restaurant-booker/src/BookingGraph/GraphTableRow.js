@@ -22,7 +22,7 @@ function GraphTableRow({ bookingSlots, tables, displayDate }) {
     return (
       <tr>
         <td style={{ backgroundColor: "orange", fontWeight: 600 }}>
-          Table: {table.id} Cov: {table.pax}
+          Table: {table.id} Pax: {table.pax}
         </td>
 
         {bookingSlots.map(bookingSlot => {
