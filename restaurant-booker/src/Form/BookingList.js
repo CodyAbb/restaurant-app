@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Booking from "./Booking";
 import "./BookingList.css";
 
@@ -9,52 +9,71 @@ function BookingList({
   handleBookingDeleteClick,
   showModalUpdate
 }) {
-  if (!searchedBookings) {
-    const bookingItem = bookings.map(booking => {
+  let bookingItems;
+
+  debugger;
+
+  if (searchedBookings.length == 0) {
+    bookingItems = bookings.map(booking => {
       return (
-        <>
-          <ul>
-            <Booking
-              bookingValue={booking}
-              handleBookingItemClick={handleBookingItemClick}
-              handleBookingDeleteClick={handleBookingDeleteClick}
-              showModalUpdate={showModalUpdate}
-              // email={booking.email}
-              // phoneNum={booking.phoneNum}
-              key={booking.id}
-            ></Booking>
-          </ul>
-        </>
+        <Booking
+          bookingValue={booking}
+          handleBookingItemClick={handleBookingItemClick}
+          handleBookingDeleteClick={handleBookingDeleteClick}
+          showModalUpdate={showModalUpdate}
+          // email={booking.email}
+          // phoneNum={booking.phoneNum}
+          key={booking.id}
+        ></Booking>
       );
     });
-    return bookingItem;
+    // setBookingItem(bookingItem);
   } else {
-    const bookingItem = searchedBookings.map(booking => {
+    bookingItems = searchedBookings.map(booking => {
       return (
-        <>
-          <ul>
-            <Booking
-              bookingValue={booking}
-              handleBookingItemClick={handleBookingItemClick}
-              handleBookingDeleteClick={handleBookingDeleteClick}
-              showModalUpdate={showModalUpdate}
-              // email={booking.email}
-              // phoneNum={booking.phoneNum}
-              key={booking.id}
-            ></Booking>
-          </ul>
-        </>
+        <Booking
+          bookingValue={booking}
+          handleBookingItemClick={handleBookingItemClick}
+          handleBookingDeleteClick={handleBookingDeleteClick}
+          showModalUpdate={showModalUpdate}
+          // email={booking.email}
+          // phoneNum={booking.phoneNum}
+          key={booking.id}
+        ></Booking>
       );
     });
-    return bookingItem;
   }
 
-  //   return (
-  //     <>
-  //       <p>Current Reservations: </p>
-  //       <ul>{this.bookingItem}</ul>
-  //     </>
+  function returnBookingStuff(selectedArray) {
+    return selectedArray.map(booking => {
+      return (
+        <Booking
+          bookingValue={booking}
+          handleBookingItemClick={handleBookingItemClick}
+          handleBookingDeleteClick={handleBookingDeleteClick}
+          showModalUpdate={showModalUpdate}
+          // email={booking.email}
+          // phoneNum={booking.phoneNum}
+          key={booking.id}
+        ></Booking>
+      );
+    });
+  }
+
+  // useEffect(() => {
+  //   setBookingItem(
+  //     searchedBookings
+  //       ? returnBookingStuff(searchedBookings)
+  //       : returnBookingStuff(bookings)
   //   );
-  // }
+  // }, []);
+
+  return (
+    <>
+      <p>Current Reservations: </p>
+      <ul>{bookingItems}</ul>
+    </>
+  );
 }
+
 export default BookingList;
