@@ -1,7 +1,8 @@
 li {
   border: solid thin black;
   text-align: center;
-  padding: 0.1em;
+  padding-left: 5em;
+  padding-right: 5em;
 }
 
 li:hover {
@@ -10,4 +11,8 @@ li:hover {
 
 label {
   font-weight: 600;
+}
+
+ul {
+  padding: auto;
 }
