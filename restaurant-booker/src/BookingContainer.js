@@ -63,7 +63,7 @@ function BookingContainer() {
           tables,
           unavailableTables
         );
-        // console.log(availableTables);
+        console.log(availableTables);
 
         setTablesAvailable(availableTables);
       })
@@ -127,7 +127,6 @@ function BookingContainer() {
       "http://localhost:8080/desks/getAllBookingsForAGivenDesk?date=06/07/2020"
     )
       .then(res => res.json())
-      // .then(response => console.log(response))
       .then(result => setTables(result))
       .catch(error => console.log(error));
   }

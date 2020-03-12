@@ -13,13 +13,12 @@ class FormBox extends Component {
       numberOfPeople: 1,
       date: "",
       selectedTime: "",
-      // availableTimes: ["12:00", "12:30", "13:00", "13:30"],
       customerName: "",
       customerEmail: "",
       customerContactNumber: "",
       newBookingId: null,
       customer_id: null,
-      tableSelected: null
+      tableSelectedId: null
 
       // customerAccessibility: false
     };
@@ -28,13 +27,10 @@ class FormBox extends Component {
   }
 
   handlePax = event => {
-    console.log(event.target.value);
     const numberOfPeople = event.target.value;
     this.setState({ numberOfPeople: numberOfPeople });
-    console.log("this state numberOfPeople" + this.state.numberOfPeople);
 
     this.props.handlePaxSelected(event.target.value);
-    console.log("this state numberOfPeoplell" + this.state.numberOfPeople);
   };
 
   handleDate = event => {
@@ -53,7 +49,7 @@ class FormBox extends Component {
   handleCustomerContactNumber = event =>
     this.setState({ customerContactNumber: event.target.value });
   handleTable = event => {
-    this.setState({ tableSelected: event.target.value });
+    this.setState({ tableSelectedId: event.target.value });
   };
   // handleCustomerAccessibility (event) {
   //     const target = event.target;
@@ -69,9 +65,10 @@ class FormBox extends Component {
     const numberOfPeople = this.state.numberOfPeople;
     const date = this.state.date;
     const time = this.state.selectedTime;
+
     // call a query and the back end returns a desk to be placed in the const desk below
 
-    const desk = `http://localhost:8080/desks/2`;
+    const desk = `http://localhost:8080/desks/${this.state.tableSelectedId}`;
 
     JSON.stringify({ numberOfPeople, date, time, desk });
 
@@ -82,7 +79,6 @@ class FormBox extends Component {
       desk
     }).then(res => {
       console.log(res);
-      console.log(`pax saved ${res.data.numberOfPeople}`);
       this.setState({ newBookingId: res.data.id });
     });
   }
@@ -106,8 +102,6 @@ class FormBox extends Component {
     })
       .then(res => {
         this.setState({ customer_id: res.data.id });
-
-        console.log(`this is new customer data from res ${res.data.id}`);
       })
       .then(() => this.patchCustomerIdInBooking())
       .then(this.props.handleFormSubmit);
@@ -168,7 +162,7 @@ class FormBox extends Component {
       table => {
         if (table.pax >= this.state.numberOfPeople) {
           return (
-            <option key={table.id} value={table}>
+            <option key={table.id} value={table.id}>
               Table: {table.id} | {table.pax} pax
             </option>
           );
