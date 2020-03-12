@@ -1,11 +1,11 @@
 import React from "react";
 
-function SearchBox(props) {
+function SearchBox({ handleSearchInput }) {
   return (
     <>
       <input
         placeholder="search reservation..."
-        onChange={props.handleSearchInput}
+        onChange={handleSearchInput}
         type="text"
       ></input>
     </>

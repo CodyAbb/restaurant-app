@@ -5,7 +5,7 @@ import BookingList from "./BookingList";
 import "./formbox.css";
 import BookingForm from "./BookingForm"
 
-const creds = require("../config/IdConfig.js");
+const creds = require("../config/Idconfig.js");
 
 class FormBox extends Component {
   constructor(props) {

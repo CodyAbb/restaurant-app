@@ -27,8 +27,8 @@ function BookingContainer() {
   const [timeSelected, setTimeSelected] = useState(null);
   const [displayDate, setdisplayDate] = useState("2020-03-06");
   const [paxSelected, setPaxSelected] = useState(null);
-  // const [searchString, setSearchString] = useState("");
-  // const [filteredSearch, setFilteredSearch] = useState("");
+  const [searchString, setSearchString] = useState("");
+  const [seachedBookings, setSearchBookings] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:8080/bookings/customerAndDesk")
@@ -70,6 +70,15 @@ function BookingContainer() {
 
       .catch(error => console.log(error));
   }, [dateSelected, timeSelected]);
+
+  useEffect(() => {
+    let filteredBookings = bookings.filter(booking => {
+      return booking.customer.name
+        .toLowerCase()
+        .includes(searchString.toLowerCase());
+    });
+    setSearchBookings(filteredBookings);
+  }, [searchString]);
 
   function findBookingById(id) {
     return bookings.find(item => item.id === id);
@@ -134,9 +143,10 @@ function BookingContainer() {
   function handleChangeDate(event) {
     return setdisplayDate(event.target.value);
   }
-  // function handleSearchInput(searchString) {
-  //   setSearchString(searchString);
-  // }
+
+  function handleSearchInput(event) {
+    setSearchString(event.target.value);
+  }
 
   return (
     <>
@@ -171,11 +181,12 @@ function BookingContainer() {
           />
         </div>
         <div className="search-box">
-          <SearchBox />
+          <SearchBox handleSearchInput={handleSearchInput} />
         </div>
         <div className="booking-list">
           <BookingList
             bookings={bookings}
+            seachedBookings={seachedBookings}
             handleBookingItemClick={handleBookingItemClick}
             handleBookingDeleteClick={handleBookingDeleteClick}
             showModalUpdate={showModalUpdate}
