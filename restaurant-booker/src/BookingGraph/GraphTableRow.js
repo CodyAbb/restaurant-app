@@ -27,23 +27,24 @@ function GraphTableRow({ bookingSlots, tables, displayDate }) {
           if (table.bookings.length === 0) {
             return <td>No Bookings for this time</td>;
           } else {
-            let findTable = table.bookings.find(({ time, date }) => {
+            let findBookingPerTable = table.bookings.find(({ time, date }) => {
               return (
                 bookingSlot >= time &&
                 bookingSlot <= getEndTime(time) &&
                 date === displayDate
               );
             });
-            if (findTable) {
-              let findCustomer = findTable.customer
-                ? findTable.customer.name
+            if (findBookingPerTable) {
+              let findCustomer = findBookingPerTable.customer
+                ? findBookingPerTable.customer.name
                 : "";
+
               return (
                 <td className="entry">
                   <a href="">
                     {" "}
                     Customer: {findCustomer} <br /> People:{" "}
-                    {findTable.numberOfPeople}
+                    {findBookingPerTable.numberOfPeople}
                   </a>
                 </td>
               );

@@ -10,7 +10,7 @@ class FormBox extends Component {
   constructor({ bookings, bookingSlots }) {
     super({ bookings, bookingSlots });
     this.state = {
-      pax: 0,
+      numberOfPeople: 1,
       date: "",
       selectedTime: "",
       // availableTimes: ["12:00", "12:30", "13:00", "13:30"],
@@ -27,7 +27,15 @@ class FormBox extends Component {
     this.handleCustomerSubmit = this.handleCustomerSubmit.bind(this);
   }
 
-  handlePax = event => this.setState({ pax: event.target.value });
+  handlePax = event => {
+    console.log(event.target.value);
+    const numberOfPeople = event.target.value;
+    this.setState({ numberOfPeople: numberOfPeople });
+    console.log("this state numberOfPeople" + this.state.numberOfPeople);
+
+    this.props.handlePaxSelected(event.target.value);
+    console.log("this state numberOfPeoplell" + this.state.numberOfPeople);
+  };
 
   handleDate = event => {
     this.setState({ date: event.target.value });
@@ -35,8 +43,6 @@ class FormBox extends Component {
   };
 
   handleTime = event => {
-    console.log(event.target.value);
-
     this.setState({ selectedTime: event.target.value });
     this.props.handleTimeSelected(event.target.value);
   };
@@ -60,23 +66,23 @@ class FormBox extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    const pax = this.state.pax;
+    const numberOfPeople = this.state.numberOfPeople;
     const date = this.state.date;
     const time = this.state.selectedTime;
     // call a query and the back end returns a desk to be placed in the const desk below
 
     const desk = `http://localhost:8080/desks/2`;
 
-    JSON.stringify({ pax, date, time, desk });
+    JSON.stringify({ numberOfPeople, date, time, desk });
 
     Axios.post(`http://localhost:8080/bookings`, {
-      pax,
+      numberOfPeople,
       date,
       time,
       desk
     }).then(res => {
       console.log(res);
-      console.log(`this is new booking id ${res.data.id}`);
+      console.log(`pax saved ${res.data.numberOfPeople}`);
       this.setState({ newBookingId: res.data.id });
     });
   }
@@ -160,7 +166,7 @@ class FormBox extends Component {
   render() {
     const populateAvailableTableOptions = this.props.tablesAvailable.map(
       table => {
-        if (table.pax >= this.state.pax) {
+        if (table.pax >= this.state.numberOfPeople) {
           return (
             <option key={table.id} value={table}>
               Table: {table.id} | {table.pax} pax
@@ -191,8 +197,8 @@ class FormBox extends Component {
             <form onSubmit={this.handleSubmit}>
               <input
                 type="number"
-                placeholder="Add number of customers"
-                value={this.state.pax}
+                // placeholder="Add number of customers"
+                value={this.state.numberOfPeople}
                 onChange={this.handlePax}
                 min="1"
                 required

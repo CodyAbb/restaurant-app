@@ -26,6 +26,7 @@ function BookingContainer() {
   const [dateSelected, setDateSelected] = useState(null);
   const [timeSelected, setTimeSelected] = useState(null);
   const [displayDate, setdisplayDate] = useState("2020-03-06");
+  const [paxSelected, setPaxSelected] = useState(null);
   // const [searchString, setSearchString] = useState("");
   // const [filteredSearch, setFilteredSearch] = useState("");
 
@@ -117,6 +118,10 @@ function BookingContainer() {
     setDateSelected(date);
   }
 
+  function handlePaxSelected(pax) {
+    setPaxSelected(pax);
+  }
+
   function handleNewBookingSubmit() {
     fetch(
       "http://localhost:8080/desks/getAllBookingsForAGivenDesk?date=06/07/2020"
@@ -152,6 +157,7 @@ function BookingContainer() {
             tablesAvailable={tablesAvailable}
             handleTimeSelected={handleTimeSelected}
             handleDateSelected={handleDateSelected}
+            handlePaxSelected={handlePaxSelected}
             handleFormSubmit={handleNewBookingSubmit}
             class="form-box"
           />
