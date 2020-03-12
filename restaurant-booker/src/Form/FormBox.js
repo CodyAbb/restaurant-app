@@ -26,6 +26,9 @@ class FormBox extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCustomerSubmit = this.handleCustomerSubmit.bind(this);
+    this.handleNewBookingAndCustomer = this.handleNewBookingAndCustomer.bind(
+      this
+    );
   }
 
   handlePax = event => {
@@ -78,7 +81,7 @@ class FormBox extends Component {
       time,
       desk
     }).then(res => {
-      console.log(res);
+      console.log("logging the handle submit parent", res);
       this.setState({ newBookingId: res.data.id });
     });
   }
@@ -145,6 +148,15 @@ class FormBox extends Component {
     );
   }
 
+  handleNewBookingAndCustomer(event) {
+    event.preventDefault();
+    console.log("am I clicked? ");
+
+    // Promise.all(this.handleSubmit(), this.handleCustomerSubmit()).then(res =>
+    //   console.log(res)
+    // );
+  }
+
   // getToday(){
   //     var today = new Date();
   //     var dd = String(today.getDate()).padStart(2, '0');
@@ -184,6 +196,7 @@ class FormBox extends Component {
               handleCustomerContactNumber={this.handleCustomerContactNumber}
             />
           </div>
+          <button onClick={this.handleNewBookingAndCustomer}>"Click me"</button>
         </div>
         <div className="modal-overlay" id="modal-overlay"></div>
       </>
