@@ -36,6 +36,7 @@ class BookingDetails extends Component {
           popShowUpdate={this.props.popShowUpdate}
           closePopUpdate={this.props.closePopUpdate}
           handleBookingDeleteClick={this.props.handleBookingDeleteClick}
+          fetchBookings={this.props.fetchBookings}
         />
         {/* <BookingDelete bookingToDelete={this.props.bookingToDelete} /> */}
 
