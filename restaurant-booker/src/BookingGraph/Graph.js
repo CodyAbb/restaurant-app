@@ -54,8 +54,6 @@ function Graph({ bookings, bookingSlots, tables, displayDate }) {
           {/* {createTD} */}
         </tbody>
       </table>
-      <h4> below map Booking</h4>
-      {/* {mapBooking} */}
     </>
   );
 }

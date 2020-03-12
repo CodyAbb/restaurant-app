@@ -28,7 +28,7 @@ function BookingContainer() {
   const [displayDate, setdisplayDate] = useState("2020-03-06");
   const [paxSelected, setPaxSelected] = useState(null);
   const [searchString, setSearchString] = useState("");
-  const [seachedBookings, setSearchBookings] = useState([]);
+  const [searchedBookings, setSearchBookings] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:8080/bookings/customerAndDesk")
@@ -186,7 +186,7 @@ function BookingContainer() {
         <div className="booking-list">
           <BookingList
             bookings={bookings}
-            seachedBookings={seachedBookings}
+            searchedBookings={searchedBookings}
             handleBookingItemClick={handleBookingItemClick}
             handleBookingDeleteClick={handleBookingDeleteClick}
             showModalUpdate={showModalUpdate}
