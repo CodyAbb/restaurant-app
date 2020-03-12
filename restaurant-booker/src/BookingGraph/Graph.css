@@ -1,16 +1,16 @@
 table {
-    border: thin black solid;
-    border-collapse: collapse;
+  border: thin black solid;
+  border-collapse: collapse;
 }
 
 td {
-    border: thin rgb(13, 93, 124) solid;
-    padding: 3%;
-    overflow: hidden;
-    min-width: 5em;
+  border: thin rgb(13, 93, 124) solid;
+  padding: 3%;
+  overflow: hidden;
+  min-width: 5em;
 }
 
 td.entry {
-    background-color: green;
-    border: none;
+  background-color: rgb(202, 191, 29);
+  border: none;
 }

@@ -29,7 +29,7 @@ function Graph({ bookings, bookingSlots, tables, displayDate }) {
   //   }
 
   const createHeader = bookingSlots.map(item => {
-    return <th>{item}</th>;
+    return <th style={{ backgroundColor: "lightblue" }}> {item}</th>;
   });
 
   return (
@@ -42,7 +42,7 @@ function Graph({ bookings, bookingSlots, tables, displayDate }) {
       /> */}
       <table>
         <tbody>
-          <tr>
+          <tr style={{ backgroundColor: "orange" }}>
             <th></th>
             {createHeader}
           </tr>

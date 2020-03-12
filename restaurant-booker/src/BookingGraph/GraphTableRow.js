@@ -21,7 +21,9 @@ function GraphTableRow({ bookingSlots, tables, displayDate }) {
 
     return (
       <tr>
-        <td>Table number: {table.id}</td>
+        <td style={{ backgroundColor: "orange", fontWeight: 600 }}>
+          Table: {table.id} Cov: {table.pax}
+        </td>
 
         {bookingSlots.map(bookingSlot => {
           if (table.bookings.length === 0) {
@@ -66,7 +68,7 @@ function GraphTableRow({ bookingSlots, tables, displayDate }) {
   if (!tables) {
     return null;
   } else {
-    return <>{createTD}</>;
+    return <> {createTD}</>;
   }
 }
 

@@ -1,8 +1,7 @@
 li {
-  border: solid thin black;
-  text-align: center;
-  padding-left: 5em;
-  padding-right: 5em;
+  list-style: circle;
+  text-align: left;
+  margin: 5px;
 }
 
 li:hover {
@@ -15,4 +14,7 @@ label {
 
 ul {
   padding: auto;
+  border: solid 0.1em grey;
+  background-color: rgb(221, 214, 205);
+  margin: 0;
 }
