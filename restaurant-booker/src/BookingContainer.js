@@ -186,6 +186,7 @@ function BookingContainer() {
         <div className="booking-list">
           <BookingList
             bookings={bookings}
+            seachedBookings={seachedBookings}
             handleBookingItemClick={handleBookingItemClick}
             handleBookingDeleteClick={handleBookingDeleteClick}
             showModalUpdate={showModalUpdate}
