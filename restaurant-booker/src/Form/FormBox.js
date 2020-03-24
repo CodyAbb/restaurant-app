@@ -112,23 +112,23 @@ class FormBox extends Component {
       .then(this.props.handleFormSubmit);
 
     // UNCOMMENT THESE TWO FUNCTIONS WHEN IMPLEMENTING EMAIL
-    // let templateParams = {
-    //   emailAddress: emailAddress,
-    //   name: name,
-    //   numberOfPeople: numberOfPeople,
-    //   time: time,
-    //   date: date
-    // };
-    // emailjs
-    //   .send("gmail", "restaurantconfirmation", templateParams, creds.USERID)
-    //   .then(
-    //     result => {
-    //       console.log(result.text);
-    //     },
-    //     error => {
-    //       console.log(error.text);
-    //     }
-    //   );
+    let templateParams = {
+      emailAddress: emailAddress,
+      name: name,
+      numberOfPeople: numberOfPeople,
+      time: time,
+      date: date
+    };
+    emailjs
+      .send("gmail", "restaurantconfirmation", templateParams, creds.USERID)
+      .then(
+        result => {
+          console.log(result.text);
+        },
+        error => {
+          console.log(error.text);
+        }
+      );
 
     // CLOSE THE POPUP
     this.props.closePop();
@@ -200,7 +200,7 @@ class FormBox extends Component {
             <button
               onClick={this.handleNewBookingAndCustomer}
               style={{ textAlign: "center" }}
-              style={{ backgroundColor: "lightblue" }}
+              // style={{ backgroundColor: "lightblue" }}
             >
               Save Booking
             </button>

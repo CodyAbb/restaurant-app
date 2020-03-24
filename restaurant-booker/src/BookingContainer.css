@@ -22,21 +22,29 @@ main {
 
 .form-box {
   grid-area: formbox;
+  background-color: white;
 }
 
 .search-box {
   grid-area: searchbox;
   justify-self: center;
+  /* font-size: 2em; */
+}
+
+.search-box > input {
+  font-size: 1.25em;
 }
 
 .booking-list {
   grid-area: bookinglist;
   font-weight: 400;
+  width: 95%;
 }
 
 .date-selector {
   grid-area: dateSelector;
   max-width: fit-content;
+  justify-self: center;
 }
 
 .booking-details {
@@ -50,5 +58,5 @@ main {
 .graph {
   grid-area: graph;
   margin: 30px;
-  background-color: rgb(229, 239, 240);
+  /* background-color: rgb(229, 239, 240); */
 }

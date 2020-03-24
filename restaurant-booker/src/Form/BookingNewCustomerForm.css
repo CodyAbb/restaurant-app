@@ -3,6 +3,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1f;
   grid-gap: 0.5em;
+  background-color: white;
 }
 
 .new-customer-table input {

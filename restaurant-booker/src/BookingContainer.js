@@ -202,7 +202,7 @@ function BookingContainer() {
             showModalUpdate={showModalUpdate}
           />
         </div>
-        <div>
+        <div className="date-selector">
           <label>Select a date:</label>
           <input
             type="date"
